@@ -558,6 +558,786 @@
   <link rel="icon" href="logo.png" sizes="192x192" />
   <link rel="apple-touch-icon" href="logo.png" />
   <meta name="msapplication-TileImage" content="logo.png" />
+
+  <!-- ============================================================
+       MOBILE RESPONSIVE STYLES (ADDED FOR MOBILE FRIENDLINESS)
+       ============================================================ -->
+  <style>
+    /* ===== GLOBAL MOBILE FIXES ===== */
+    *, *::before, *::after {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    html {
+      overflow-x: hidden !important;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      overflow-x: hidden !important;
+      width: 100% !important;
+      max-width: 100vw !important;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* ===== HEADER MOBILE ===== */
+    @media (max-width: 768px) {
+      .elementor-element-26e65fde .e-con-inner {
+        flex-wrap: wrap !important;
+        padding: 10px 15px !important;
+      }
+
+      .elementor-element-203540a9 {
+        width: 50% !important;
+      }
+
+      .elementor-element-203540a9 img {
+        max-width: 120px !important;
+        height: auto !important;
+      }
+
+      .elementor-element-7b86f2a9 {
+        width: auto !important;
+        flex-grow: 0 !important;
+      }
+
+      .elementor-element-21fbf49b {
+        display: none !important;
+      }
+
+      /* Mobile menu toggle */
+      .elementor-menu-toggle {
+        font-size: 22px !important;
+        padding: 8px !important;
+      }
+
+      /* Mobile dropdown menu */
+      .elementor-nav-menu--dropdown {
+        width: 100vw !important;
+        left: 0 !important;
+        position: fixed !important;
+        top: auto !important;
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+
+      .elementor-nav-menu--dropdown .elementor-nav-menu {
+        padding: 15px !important;
+      }
+
+      .elementor-nav-menu--dropdown .elementor-item {
+        padding: 12px 15px !important;
+        font-size: 16px !important;
+      }
+    }
+
+    /* ===== SECTION 1: HERO CAROUSEL MOBILE ===== */
+    @media (max-width: 768px) {
+      .elementor-element-3a21949 {
+        padding: 0 !important;
+      }
+
+      .elementor-image-carousel .swiper-slide img {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 150px;
+        object-fit: cover;
+      }
+
+      .elementor-swiper-button {
+        display: none !important;
+      }
+    }
+
+    /* ===== SECTION 2: ABOUT / INTRO MOBILE ===== */
+    @media (max-width: 768px) {
+      .elementor-element-b43c25d .e-con-inner {
+        flex-direction: column !important;
+        padding: 30px 15px !important;
+        gap: 20px !important;
+      }
+
+      .elementor-element-52f31be,
+      .elementor-element-feb77f2 {
+        width: 100% !important;
+      }
+
+      .elementor-element-52f31be img {
+        max-width: 250px !important;
+        margin: 0 auto;
+        display: block;
+      }
+
+      .elementor-element-eaf9b70 .elementor-headline {
+        font-size: 22px !important;
+        line-height: 1.3 !important;
+      }
+
+      .elementor-element-f9e9846 p {
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+      }
+
+      .elementor-element-969ad95 .elementor-button {
+        width: 100% !important;
+        text-align: center !important;
+      }
+    }
+
+    /* ===== SECTION 3: WHY CHOOSE US FEATURES GRID MOBILE ===== */
+    @media (max-width: 768px) {
+      .elementor-element-0ed7b41 .e-con-inner {
+        padding: 20px 10px !important;
+      }
+
+      .elementor-element-727a525 {
+        flex-direction: column !important;
+        gap: 12px !important;
+      }
+
+      .elementor-element-616c515,
+      .elementor-element-2e3cc85 {
+        width: 100% !important;
+        gap: 12px !important;
+      }
+
+      .custom-card.hover-card {
+        padding: 15px !important;
+      }
+
+      .custom-card.hover-card .elementor-image-box-wrapper {
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 12px !important;
+      }
+
+      .custom-card.hover-card .elementor-image-box-img {
+        min-width: 50px !important;
+      }
+
+      .custom-card.hover-card .elementor-image-box-img img {
+        width: 50px !important;
+        height: 50px !important;
+      }
+
+      .custom-card.hover-card .elementor-image-box-title {
+        font-size: 15px !important;
+      }
+
+      .custom-card.hover-card .elementor-image-box-description {
+        font-size: 13px !important;
+      }
+
+      .arrow-icon {
+        display: none !important;
+      }
+    }
+
+    /* ===== SECTION 4: LIVE ONLINE COURSE CATEGORIES MOBILE ===== */
+    @media (max-width: 768px) {
+      .elementor-element-7bebfad .e-con-inner {
+        padding: 20px 15px !important;
+      }
+
+      .elementor-element-eec904a {
+        padding: 20px 15px !important;
+      }
+
+      .elementor-element-b9d5620,
+      .elementor-element-30ece77,
+      .elementor-element-cd1776b,
+      .elementor-element-6e56552 {
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+      }
+
+      .elementor-element-b9d5620 .elementor-button,
+      .elementor-element-30ece77 .elementor-button,
+      .elementor-element-cd1776b .elementor-button,
+      .elementor-element-6e56552 .elementor-button {
+        font-size: 12px !important;
+        padding: 8px 12px !important;
+        white-space: nowrap !important;
+      }
+
+      .elementor-element-30ece77 .elementor-widget,
+      .elementor-element-cd1776b .elementor-widget,
+      .elementor-element-6e56552 .elementor-widget {
+        width: 48% !important;
+      }
+    }
+
+    /* ===== SECTION 5: POPULAR COURSES MOBILE ===== */
+    @media (max-width: 768px) {
+      .elementor-element-2112f6d .e-con-inner {
+        padding: 20px 15px !important;
+      }
+
+      .elementor-element-b31970d {
+        flex-direction: column !important;
+        gap: 20px !important;
+      }
+
+      .elementor-element-a496096,
+      .elementor-element-b1c67bc,
+      .elementor-element-ddaa144,
+      .elementor-element-a11698c {
+        width: 100% !important;
+      }
+
+      .elementor-element-a496096 img,
+      .elementor-element-b1c67bc img,
+      .elementor-element-ddaa144 img,
+      .elementor-element-a11698c img {
+        width: 100% !important;
+        height: auto !important;
+      }
+
+      .tag-pill {
+        font-size: 11px !important;
+      }
+
+      .elementor-element-515d315,
+      .elementor-element-4785bd1,
+      .elementor-element-e77651a,
+      .elementor-element-feb7b20 {
+        flex-wrap: wrap !important;
+        gap: 5px !important;
+      }
+
+      .elementor-element-515d315 .elementor-heading-title,
+      .elementor-element-4785bd1 .elementor-heading-title,
+      .elementor-element-e77651a .elementor-heading-title,
+      .elementor-element-feb7b20 .elementor-heading-title {
+        font-size: 18px !important;
+      }
+    }
+
+    /* ===== SECTION 6: WHAT WE OFFER CARDS MOBILE ===== */
+    @media (max-width: 768px) {
+      .elementor-element-3dc104e .e-con-inner {
+        flex-wrap: wrap !important;
+        padding: 20px 15px !important;
+        gap: 15px !important;
+      }
+
+      .elementor-element-3bc095f,
+      .elementor-element-b629fac,
+      .elementor-element-3325fb4,
+      .elementor-element-75e9901,
+      .elementor-element-01654a2 {
+        width: 100% !important;
+        padding: 20px !important;
+      }
+
+      .elementor-element-3bc095f .elementor-image-box-img img,
+      .elementor-element-b629fac .elementor-image-box-img img,
+      .elementor-element-3325fb4 .elementor-image-box-img img,
+      .elementor-element-75e9901 .elementor-image-box-img img,
+      .elementor-element-01654a2 .elementor-image-box-img img {
+        width: 60px !important;
+        height: 60px !important;
+      }
+    }
+
+    @media (min-width: 481px) and (max-width: 768px) {
+      .elementor-element-3bc095f,
+      .elementor-element-b629fac,
+      .elementor-element-3325fb4,
+      .elementor-element-75e9901,
+      .elementor-element-01654a2 {
+        width: 48% !important;
+      }
+    }
+
+    /* ===== SECTION 7: TESTIMONIALS MOBILE ===== */
+    @media (max-width: 768px) {
+      .elementor-element-7218792 .e-con-inner {
+        padding: 20px 15px !important;
+      }
+
+      .elementor-element-e1d1c2d .elementor-heading-title {
+        font-size: 22px !important;
+      }
+
+      .elementor-element-c3192c0 {
+        flex-direction: column !important;
+        gap: 15px !important;
+      }
+
+      .elementor-element-834889f,
+      .elementor-element-691c0fd {
+        width: 100% !important;
+      }
+
+      .elementor-element-834889f img {
+        width: 100% !important;
+        height: auto !important;
+      }
+
+      .elementor-element-1825fdf {
+        flex-wrap: wrap !important;
+        gap: 15px !important;
+      }
+
+      .elementor-element-1825fdf .elementor-widget-video {
+        width: 100% !important;
+      }
+
+      .elementor-element-9f1030c .elementor-heading-title {
+        font-size: 20px !important;
+      }
+
+      /* Testimonial carousel mobile */
+      .jkit-testimonials .testimonial-item {
+        min-width: 100% !important;
+        padding: 5px !important;
+      }
+
+      .testimonial-box .comment-content p {
+        font-size: 13px !important;
+      }
+
+      .testimonial-box .profile-name {
+        font-size: 14px !important;
+      }
+
+      .testimonial-box .profile-des {
+        font-size: 12px !important;
+      }
+    }
+
+    /* ===== SECTION 8: PREPARATION GUIDANCE MOBILE ===== */
+    @media (max-width: 768px) {
+      .elementor-element-f4d1a2a .e-con-inner {
+        flex-direction: column !important;
+        padding: 30px 15px !important;
+        gap: 20px !important;
+      }
+
+      .elementor-element-8d23e13,
+      .elementor-element-34c54ba {
+        width: 100% !important;
+      }
+
+      .elementor-element-8d23e13 img {
+        max-width: 280px !important;
+        margin: 0 auto;
+        display: block;
+      }
+
+      .elementor-element-dda87e2 .elementor-heading-title {
+        font-size: 20px !important;
+        line-height: 1.4 !important;
+      }
+
+      .elementor-element-1a0336e p {
+        font-size: 14px !important;
+      }
+
+      .elementor-element-e3d50d4 .elementor-button {
+        width: 100% !important;
+        text-align: center !important;
+      }
+    }
+
+    /* ===== SECTION 9: FAQ MOBILE ===== */
+    @media (max-width: 768px) {
+      .elementor-element-a0f3db8 .e-con-inner {
+        flex-direction: column !important;
+        padding: 20px 15px !important;
+        gap: 20px !important;
+      }
+
+      .elementor-element-e254d66,
+      .elementor-element-f298d2c {
+        width: 100% !important;
+      }
+
+      .elementor-element-e254d66 img {
+        max-width: 200px !important;
+        margin: 0 auto;
+        display: block;
+      }
+
+      .elementor-element-80c9621 .elementor-heading-title {
+        font-size: 22px !important;
+      }
+
+      .jkit-accordion .card-header .title {
+        font-size: 14px !important;
+        line-height: 1.4 !important;
+      }
+
+      .jkit-accordion .card-body p {
+        font-size: 13px !important;
+        line-height: 1.5 !important;
+      }
+
+      .jkit-accordion .card-header-button {
+        padding: 12px 15px !important;
+      }
+    }
+
+    /* ===== SECTION 10: APP PROMOTION MOBILE ===== */
+    @media (max-width: 768px) {
+      .elementor-element-3d4368ec .e-con-inner {
+        padding: 0 !important;
+      }
+
+      .elementor-element-1e9eb47 {
+        padding: 30px 15px !important;
+      }
+
+      .elementor-element-559d32b2 {
+        flex-direction: column !important;
+      }
+
+      .elementor-element-6c63235f,
+      .elementor-element-53c2629a {
+        width: 100% !important;
+      }
+
+      .elementor-element-1723de0 .elementor-heading-title,
+      .elementor-element-0fd4cbf .elementor-heading-title {
+        font-size: 20px !important;
+        line-height: 1.3 !important;
+      }
+
+      .elementor-element-1cb9d80 p {
+        font-size: 14px !important;
+      }
+
+      .elementor-element-59130a8 .elementor-heading-title {
+        font-size: 18px !important;
+      }
+
+      .elementor-element-a0fe061 {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+        justify-content: center !important;
+      }
+
+      .elementor-element-a0fe061 img,
+      .elementor-element-243c56c img {
+        max-width: 140px !important;
+        height: auto !important;
+      }
+
+      .elementor-element-6428f708 img {
+        max-width: 200px !important;
+        margin: 0 auto;
+        display: block;
+      }
+    }
+
+    /* ===== FOOTER MOBILE ===== */
+    @media (max-width: 768px) {
+      .elementor-element-272cb284 .e-con-inner {
+        flex-wrap: wrap !important;
+        padding: 30px 15px !important;
+        gap: 25px !important;
+      }
+
+      .elementor-element-618681cf {
+        width: 100% !important;
+        text-align: center !important;
+      }
+
+      .elementor-element-618681cf img {
+        max-width: 120px !important;
+        margin: 0 auto;
+        display: block;
+      }
+
+      .elementor-element-3d8585d5,
+      .elementor-element-6b879016,
+      .elementor-element-3ed6bdde {
+        width: 100% !important;
+      }
+
+      .elementor-element-26322216 .elementor-heading-title,
+      .elementor-element-2c8855b9 .elementor-heading-title,
+      .elementor-element-4315d9a9 .elementor-heading-title {
+        font-size: 16px !important;
+      }
+
+      .elementor-element-174c7b49 .elementor-icon-list-item,
+      .elementor-element-42334ef3 .elementor-icon-list-item {
+        padding: 4px 0 !important;
+      }
+
+      .elementor-element-174c7b49 .elementor-icon-list-text,
+      .elementor-element-42334ef3 .elementor-icon-list-text {
+        font-size: 14px !important;
+      }
+
+      /* Social icons mobile */
+      .elementor-element-7beb484c .elementor-social-icons-wrapper {
+        justify-content: flex-start !important;
+        gap: 10px !important;
+      }
+
+      .elementor-element-7beb484c .elementor-social-icon {
+        width: 38px !important;
+        height: 38px !important;
+      }
+
+      /* Footer app buttons */
+      .elementor-element-243c56c {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+      }
+
+      .elementor-element-243c56c img {
+        max-width: 130px !important;
+      }
+
+      /* Footer copyright */
+      .elementor-element-6316f643 .e-con-inner {
+        padding: 15px !important;
+      }
+
+      .elementor-element-601b26cf .elementor-heading-title {
+        font-size: 12px !important;
+        text-align: center !important;
+      }
+    }
+
+    /* ===== POPUP MOBILE ===== */
+    @media (max-width: 768px) {
+      .custom-popup-box {
+        padding: 25px 20px !important;
+        max-width: 95% !important;
+        margin: 10px !important;
+      }
+
+      .custom-popup-box h2 {
+        font-size: 20px !important;
+      }
+
+      .custom-popup-box p {
+        font-size: 13px !important;
+      }
+
+      .custom-form-group input,
+      .custom-form-group textarea {
+        padding: 12px 14px !important;
+        font-size: 14px !important;
+      }
+
+      .custom-submit-btn {
+        padding: 13px !important;
+        font-size: 15px !important;
+      }
+    }
+
+    /* ===== STICKY WIDGET MOBILE ===== */
+    @media (max-width: 768px) {
+      .custom-sticky-widget {
+        bottom: 12px !important;
+        right: 12px !important;
+        gap: 10px !important;
+      }
+
+      .custom-sticky-btn {
+        width: 48px !important;
+        height: 48px !important;
+      }
+
+      .custom-sticky-btn svg {
+        width: 22px !important;
+        height: 22px !important;
+      }
+    }
+
+    /* ===== ELEMENTOR CONTAINER FIX FOR MOBILE ===== */
+    @media (max-width: 768px) {
+      .e-con.e-flex {
+        flex-wrap: wrap !important;
+      }
+
+      .e-con-inner {
+        flex-wrap: wrap !important;
+      }
+
+      .elementor-widget:not(:first-child) {
+        margin-top: 0 !important;
+      }
+    }
+
+    /* ===== COURSE CATEGORY BUTTONS WRAP FIX ===== */
+    @media (max-width: 768px) {
+      .elementor-element-30ece77 .elementor-widget,
+      .elementor-element-cd1776b .elementor-widget,
+      .elementor-element-6e56552 .elementor-widget {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+
+      .elementor-element-30ece77 .elementor-button,
+      .elementor-element-cd1776b .elementor-button,
+      .elementor-element-6e56552 .elementor-button {
+        width: 100% !important;
+      }
+    }
+
+    /* ===== VIDEO TESTIMONIALS MOBILE ===== */
+    @media (max-width: 768px) {
+      .elementor-element-ab879de,
+      .elementor-element-05eb0ca,
+      .elementor-element-e5ebc21,
+      .elementor-element-b13440d,
+      .elementor-element-f8e0321 {
+        width: 100% !important;
+      }
+
+      .elementor-element-ab879de .elementor-video,
+      .elementor-element-05eb0ca .elementor-video,
+      .elementor-element-e5ebc21 .elementor-video,
+      .elementor-element-b13440d .elementor-video,
+      .elementor-element-f8e0321 .elementor-video {
+        width: 100% !important;
+        height: auto !important;
+      }
+    }
+
+    /* ===== PREVENT HORIZONTAL SCROLL ===== */
+    .elementor-widget,
+    .elementor-widget-wrap,
+    .e-con,
+    .e-con-inner {
+      max-width: 100% !important;
+    }
+
+    @media (max-width: 768px) {
+      .elementor-element-727a525 {
+        padding: 0 5px !important;
+      }
+
+      /* JKIT icon box in footer mobile sizing */
+      .jkit-icon-box .icon-box-body .title {
+        font-size: 14px !important;
+      }
+
+      .jkit-icon-box .icon-box-body .icon-box-description {
+        font-size: 12px !important;
+      }
+
+      .jkit-icon-box .icon-box-header .icon {
+        font-size: 16px !important;
+        width: 30px !important;
+        height: 30px !important;
+      }
+    }
+
+    /* ===== TINY SLIDER FIX FOR MOBILE ===== */
+    @media (max-width: 768px) {
+      .tns-slider {
+        touch-action: pan-y;
+      }
+
+      .tns-outer {
+        overflow: hidden;
+      }
+    }
+
+    /* ===== SWIPER CAROUSEL TOUCH FIX ===== */
+    @media (max-width: 768px) {
+      .swiper {
+        touch-action: pan-y;
+      }
+
+      .elementor-image-carousel-wrapper {
+        overflow: hidden;
+      }
+    }
+
+    /* ===== EXTRA SMALL DEVICES (320px) ===== */
+    @media (max-width: 380px) {
+      .custom-card.hover-card .elementor-image-box-wrapper {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+      }
+
+      .custom-card.hover-card .elementor-image-box-img {
+        min-width: 40px !important;
+      }
+
+      .custom-card.hover-card .elementor-image-box-img img {
+        width: 40px !important;
+        height: 40px !important;
+      }
+
+      .custom-popup-box h2 {
+        font-size: 18px !important;
+      }
+
+      .custom-sticky-btn {
+        width: 44px !important;
+        height: 44px !important;
+      }
+
+      .custom-sticky-btn svg {
+        width: 20px !important;
+        height: 20px !important;
+      }
+    }
+
+    /* ===== TABLET ADJUSTMENTS ===== */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .elementor-element-b43c25d .e-con-inner {
+        padding: 30px 20px !important;
+      }
+
+      .elementor-element-b31970d {
+        flex-wrap: wrap !important;
+      }
+
+      .elementor-element-a496096,
+      .elementor-element-b1c67bc,
+      .elementor-element-ddaa144,
+      .elementor-element-a11698c {
+        width: 48% !important;
+      }
+
+      .elementor-element-3dc104e .e-con-inner {
+        flex-wrap: wrap !important;
+        gap: 15px !important;
+      }
+
+      .elementor-element-3bc095f,
+      .elementor-element-b629fac,
+      .elementor-element-3325fb4,
+      .elementor-element-75e9901,
+      .elementor-element-01654a2 {
+        width: 48% !important;
+      }
+
+      .elementor-element-f4d1a2a .e-con-inner {
+        padding: 30px 20px !important;
+      }
+
+      .elementor-element-272cb284 .e-con-inner {
+        flex-wrap: wrap !important;
+        gap: 20px !important;
+      }
+
+      .elementor-element-618681cf,
+      .elementor-element-3d8585d5,
+      .elementor-element-6b879016,
+      .elementor-element-3ed6bdde {
+        width: 48% !important;
+      }
+    }
+  </style>
 </head>
 
 
@@ -719,7 +1499,7 @@
             <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="3 of 5">
               <a data-elementor-open-lightbox="yes" data-elementor-lightbox-slideshow="f2b060a" data-elementor-lightbox-title="ONGOING BATCHES.jpg" data-e-action-hash="#elementor-action%3Aaction%3Dlightbox%26settings%3DeyJpZCI6MTgxMSwidXJsIjoiaHR0cHM6XC9cL215aW5maW5pdHl6b25lLmNvbVwvd3AtY29udGVudFwvdXBsb2Fkc1wvMjAyNlwvMDVcL09OR09JTkctQkFUQ0hFUy5qcGctc2NhbGVkLmpwZWciLCJzbGlkZXNob3ciOiJmMmIwNjBhIn0%3D" href="course.html/">
                 <figure class="swiper-slide-inner">
-                  <img decoding="async" class="swiper-slide-image" src="image (1).png" alt="ONGOING BATCHES.jpg" />
+                  <img decoding="async" class="swiper-slide-image" src="image (3).png" alt="ONGOING BATCHES.jpg" />
                 </figure>
               </a>
             </div>
@@ -728,7 +1508,7 @@
             <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="4 of 5">
               <a data-elementor-open-lightbox="yes" data-elementor-lightbox-slideshow="f2b060a" data-elementor-lightbox-title="For Aspirants Who Want More Than Just Preparation.jpg (4)" data-e-action-hash="#elementor-action%3Aaction%3Dlightbox%26settings%3DeyJpZCI6MTQzMCwidXJsIjoiaHR0cHM6XC9cL215aW5maW5pdHl6b25lLmNvbVwvd3AtY29udGVudFwvdXBsb2Fkc1wvMjAyNlwvMDVcL0Zvci1Bc3BpcmFudHMtV2hvLVdhbnQtTW9yZS1UaGFuLUp1c3QtUHJlcGFyYXRpb24uanBnLTQud2VicCIsInNsaWRlc2hvdyI6ImYyYjA2MGEifQ%3D%3D" href="couse.html">
                 <figure class="swiper-slide-inner">
-                  <img decoding="async" class="swiper-slide-image" src="image (2).png" alt="For Aspirants Who Want More Than Just Preparation.jpg (4)" />
+                  <img decoding="async" class="swiper-slide-image" src="image (4).png" alt="For Aspirants Who Want More Than Just Preparation.jpg (4)" />
                 </figure>
               </a>
             </div>
@@ -737,7 +1517,7 @@
             <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="5 of 5">
               <a data-elementor-open-lightbox="yes" data-elementor-lightbox-slideshow="f2b060a" data-elementor-lightbox-title="MISSION CIL 2026 banner.jpg (2)" data-e-action-hash="#elementor-action%3Aaction%3Dlightbox%26settings%3DeyJpZCI6MTcyMiwidXJsIjoiaHR0cHM6XC9cL215aW5maW5pdHl6b25lLmNvbVwvd3AtY29udGVudFwvdXBsb2Fkc1wvMjAyNlwvMDVcL01JU1NJT04tQ0lMLTIwMjYtYmFubmVyLmpwZy0yLXNjYWxlZC5qcGVnIiwic2xpZGVzaG93IjoiZjJiMDYwYSJ9" href="course.html">
                 <figure class="swiper-slide-inner">
-                  <img decoding="async" class="swiper-slide-image" src="image (1).png" alt="MISSION CIL 2026 banner.jpg (2)" />
+                  <img decoding="async" class="swiper-slide-image" src="image (5).png" alt="MISSION CIL 2026 banner.jpg (2)" />
                 </figure>
               </a>
             </div>
@@ -1291,7 +2071,7 @@
                     <h2 class="elementor-heading-title elementor-size-default">₹34,999/-</h2>
                   </div>
                 </div>
-                <div class="elementor-element elementor-element-df935dd e-con-full e-flex e-con e-child" data-id="df935dd" data-element_type="container" data-e-type="container">
+                <div class="elementor-element elementor-element-df935                  <div class="elementor-element elementor-element-df935dd e-con-full e-flex e-con e-child" data-id="df935dd" data-element_type="container" data-e-type="container">
                   <div class="elementor-element elementor-element-10309bb tag-pill elementor-tablet-align-start elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="10309bb" data-element_type="widget" data-e-type="widget" data-widget_type="icon-list.default">
                     <ul class="elementor-icon-list-items">
                       <li class="elementor-icon-list-item">
