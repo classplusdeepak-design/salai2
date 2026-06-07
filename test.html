@@ -482,47 +482,6 @@
         <link rel='shortlink' href='https://myinfinityzone.com/?p=1298'/>
         <meta name="generator" content="Elementor 4.0.7; features: e_font_icon_svg, additional_custom_breakpoints; settings: css_print_method-external, google_font-enabled, font_display-swap">
         <style>
-/* Modal Overlay */
-.video-modal-overlay {
-  display: none; /* Hidden by default */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.85); /* Dark background */
-  z-index: 9999; /* Ensure it sits on top of everything */
-  justify-content: center;
-  align-items: center;
-}
-
-/* Video Container (16:9 Aspect Ratio) */
-.video-modal-box {
-  width: 90%;
-  max-width: 800px;
-  aspect-ratio: 16 / 9;
-  background: #000;
-}
-
-/* Iframe inside container */
-.video-modal-box iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-/* Close Button */
-.video-modal-close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  color: white;
-  font-size: 40px;
-  font-weight: bold;
-  cursor: pointer;
-  background: none;
-  border: none;
-}
             .e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload) * {
                 background-image: none!important
             }
@@ -662,8 +621,7 @@ h1{text-align:center}
 .video-modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);z-index:99998;justify-content:center;align-items:center;padding:20px;box-sizing:border-box}
 .video-modal-overlay.active{display:flex}
 .video-modal-box{position:relative;width:100%;max-width:900px;background:#000;border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
-.video-modal-close{position:absolute;top:-40px;right:0;font-size:32px;color:#fff;cursor:pointer;background:none;border:none;line-height:1;z-index:99999}
-.video-modal-close:hover{color:#ff4444}
+.video-modal-close{position:fixed;top:20px;right:30px;z-index:100000;background-color:rgba(255,0,0,0.8);color:white;border:2px solid white;border-radius:50%;width:50px;height:50px;font-size:30px;font-weight:bold;cursor:pointer;display:flex;justify-content:center;align-items:center}.video-modal-close:hover{color:#ff4444}
 .video-modal-box iframe{width:100%;aspect-ratio:16/9;border:none;display:block}
 </style>
 <script>
@@ -711,13 +669,17 @@ if(e.target===overlay){closeVideo();}
 <div id="poly" class="section"><div class="grid"></div></div>
 
 <!-- Video Player Modal -->
-<div id="videoModalOverlay" class="video-modal-overlay">
-<button class="video-modal-close" onclick="closeVideo()">&times;</button>
-<div class="video-modal-box">
-<iframe id="videoModalIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<!-- Added onclick="closeVideo()" to the overlay -->
+<div id="videoModalOverlay" class="video-modal-overlay" onclick="closeVideo()">
+  
+  <!-- Added onclick="event.stopPropagation()" so clicking the video itself DOESN'T close it -->
+  <div class="video-modal-box" onclick="event.stopPropagation()">
+    <iframe id="videoModalIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+  
+  <!-- The Close Button -->
+  <button class="video-modal-close" onclick="closeVideo()">&times;</button>
 </div>
-</div>
-
 
     
         <footer data-elementor-type="footer" data-elementor-id="22" class="elementor elementor-22 elementor-location-footer" data-elementor-post-type="elementor_library">
@@ -1739,27 +1701,26 @@ if(e.target===overlay){closeVideo();}
 </script>
 <script>
   function playVideo(videoId) {
-    // Check if videoId is empty (like your Video 35)
     if (!videoId) {
       alert("Video is currently unavailable.");
       return;
     }
     
-    // Construct the correct YouTube EMBED url
     var iframe = document.getElementById('videoModalIframe');
     iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
     
-    // Show the modal
-    document.getElementById('videoModalOverlay').style.display = 'flex';
+    // Show the modal using the active class
+    document.getElementById('videoModalOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
   }
 
   function closeVideo() {
-    // Stop the video by removing the src
     var iframe = document.getElementById('videoModalIframe');
-    iframe.src = "";
+    iframe.src = ""; // Stop the video
     
-    // Hide the modal
-    document.getElementById('videoModalOverlay').style.display = 'none';
+    // Hide the modal by removing the active class
+    document.getElementById('videoModalOverlay').classList.remove('active');
+    document.body.style.overflow = 'auto'; // Restore background scrolling
   }
 </script>
     </body>
