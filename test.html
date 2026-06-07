@@ -614,9 +614,16 @@ h1{text-align:center}
 .card{background:#fff;padding:10px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
 .card img {
     width: 100%;
-    aspect-ratio: 16/9;
+    aspect-ratio: 16/9;       /* Mobile-friendly default */
     object-fit: cover;
     border-radius: 8px;
+}
+
+@media (min-width: 601px) {
+    .card img {
+        aspect-ratio: auto;    /* Reset aspect-ratio */
+        height: 310px;         /* Fixed height only on desktop */
+    }
 }
 .btn{display:block;text-align:center;background:#1f233e;color:#fff;text-decoration:none;padding:10px;border-radius:6px;cursor:pointer}
 @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
