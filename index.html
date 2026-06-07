@@ -486,22 +486,40 @@
         <link rel='shortlink' href='https://myinfinityzone.com/'/>
         <meta name="generator" content="Elementor 4.0.7; features: e_font_icon_svg, additional_custom_breakpoints; settings: css_print_method-external, google_font-enabled, font_display-swap">
         <style>
-            .e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload) * {
-                background-image: none!important
-            }
+  /* ============================================
+     FIX: Mobile Header User Icon (Right Corner)
+     ============================================ */
 
-            @media screen and (max-height: 1024px) {
-                .e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload),.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload) * {
-                    background-image:none!important
-                }
-            }
+  /* Make the icon wrapper visible and properly sized */
+  .elementor-element-ecdd69c .elementor-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-            @media screen and (max-height: 640px) {
-                .e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload),.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload) * {
-                    background-image:none!important
-                }
-            }
-        </style>
+  /* Style the icon link */
+  .elementor-element-ecdd69c .elementor-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    transition: background 0.3s ease;
+  }
+
+  .elementor-element-ecdd69c .elementor-icon:hover {
+    background: rgba(255, 255, 255, 0.22);
+  }
+
+  /* Make the SVG icon WHITE and proper size */
+  .elementor-element-ecdd69c .elementor-icon svg {
+    width: 22px;
+    height: 22px;
+    fill: #ffffff !important;
+  }
+</style>
         <meta name="theme-color" content="#1F233E">
         <link rel="icon" href="logo.png" sizes="32x32"/>
         <link rel="icon" href="logo.png" sizes="192x192"/>
