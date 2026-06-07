@@ -3202,6 +3202,32 @@ good initiative loved it sir.</p>
         });
     });
 </script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var overlays = document.querySelectorAll('.elementor-custom-embed-image-overlay');
+
+    overlays.forEach(function (overlay) {
+      overlay.addEventListener('click', function () {
+        var wrapper = this.closest('.elementor-wrapper');
+        if (!wrapper) return;
+
+        var iframe = wrapper.querySelector('.elementor-video');
+        if (!iframe) return;
+
+        var videoSrc = iframe.getAttribute('data-src');
+        if (videoSrc) {
+          // Convert any remaining /shorts/ to /embed/ just in case
+          videoSrc = videoSrc.replace('/shorts/', '/embed/');
+          iframe.setAttribute('src', videoSrc);
+          iframe.removeAttribute('data-src');
+        }
+
+        iframe.style.display = 'block';
+        this.style.display = 'none';
+      });
+    });
+  });
+</script>
     </body>
 </html>
 <!-- Page optimized by LiteSpeed Cache @2026-05-29 12:25:23 -->
