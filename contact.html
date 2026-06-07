@@ -1760,6 +1760,34 @@
     }, 20000); // 20000 = 20 seconds
   }
 </script>
+<script>
+  // Fix: Replace JKI font icon with SVG for reliable hamburger display
+  document.addEventListener('DOMContentLoaded', function () {
+    var hamburgerIcons = document.querySelectorAll('.elementor-menu-toggle__icon--open.jki');
+
+    hamburgerIcons.forEach(function (icon) {
+      // Hide the broken font icon
+      icon.style.display = 'none';
+
+      // Insert a clean SVG hamburger icon (3 horizontal lines)
+      var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('width', '24');
+      svg.setAttribute('height', '24');
+      svg.setAttribute('viewBox', '0 0 24 24');
+      svg.setAttribute('fill', '#1F233E');
+      svg.style.width = '24px';
+      svg.style.height = '24px';
+      svg.classList.add('custom-hamburger-svg');
+
+      svg.innerHTML = '<rect x="3" y="4" width="18" height="2.5" rx="1.25" fill="#1F233E"></rect>' +
+                      '<rect x="3" y="10.75" width="18" height="2.5" rx="1.25" fill="#1F233E"></rect>' +
+                      '<rect x="3" y="17.5" width="18" height="2.5" rx="1.25" fill="#1F233E"></rect>';
+
+      // Insert SVG right after the font icon
+      icon.parentNode.insertBefore(svg, icon.nextSibling);
+    });
+  });
+</script>
     </body>
 </html>
 <!-- Page optimized by LiteSpeed Cache @2026-06-05 11:23:24 -->
