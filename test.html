@@ -4,12 +4,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="profile" href="https://gmpg.org/xfn/11">
-        <title>Free Material &#8211;Salai Easy Maths</title>
+        <title>About Us &#8211;Salai Easy Maths</title>
         <meta name='robots' content='max-image-preview:large'/>
         <link rel="alternate" type="application/rss+xml" title="Salai Easy Maths &raquo; Feed" href="https://myinfinityzone.com/feed/"/>
         <link rel="alternate" type="application/rss+xml" title="Salai Easy Maths &raquo; Comments Feed" href="https://myinfinityzone.com/comments/feed/"/>
-        <link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://myinfinityzone.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmyinfinityzone.com%2Ftest-series%2F"/>
-        <link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://myinfinityzone.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmyinfinityzone.com%2Ftest-series%2F&#038;format=xml"/>
+        <link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://myinfinityzone.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmyinfinityzone.com%2Fabout-us%2F"/>
+        <link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://myinfinityzone.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmyinfinityzone.com%2Fabout-us%2F&#038;format=xml"/>
         <style id="wp-img-auto-sizes-contain-inline-css">
             img:is([sizes=auto i],[sizes^="auto," i]) {
                 contain-intrinsic-size: 3000px 1500px
@@ -29,6 +29,68 @@
                 padding: 0!important
             }
         </style>
+<style>
+body{font-family:Arial;margin:0;padding:20px;background:#f4f4f4}
+h1{text-align:center}
+.tabs{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:20px 0}
+.tabs button{padding:12px 18px;border:none;background:#1f233e;color:#fff;border-radius:8px;cursor:pointer}
+.section{display:none} .active{display:block}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:#fff;padding:10px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.card img {
+    width: 100%;
+    aspect-ratio: 16/9;       /* Mobile-friendly default */
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+@media (min-width: 601px) {
+    .card img {
+        aspect-ratio: auto;    /* Reset aspect-ratio */
+        height: 250px;         /* Fixed height only on desktop */
+    }
+}.btn{display:block;text-align:center;background:#1f233e;color:#fff;text-decoration:none;padding:10px;border-radius:6px;cursor:pointer}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+
+/* Video Player Modal */
+.video-modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);z-index:99998;justify-content:center;align-items:center;padding:20px;box-sizing:border-box}
+.video-modal-overlay.active{display:flex}
+.video-modal-box{position:relative;width:100%;max-width:900px;background:#000;border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+.video-modal-close{position:fixed;top:20px;right:30px;z-index:100000;background-color:rgba(255,0,0,0.8);color:white;border:2px solid white;border-radius:50%;width:50px;height:50px;font-size:30px;font-weight:bold;cursor:pointer;display:flex;justify-content:center;align-items:center}.video-modal-close:hover{color:#ff4444}
+.video-modal-box iframe{width:100%;aspect-ratio:16/9;border:none;display:block}
+</style>
+<script>
+function showTab(id){
+document.querySelectorAll('.section').forEach(x=>x.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+}
+
+function playVideo(videoId){
+var overlay=document.getElementById('videoModalOverlay');
+var iframe=document.getElementById('videoModalIframe');
+iframe.src='https://www.youtube.com/embed/'+videoId+'?autoplay=1&rel=0';
+overlay.classList.add('active');
+document.body.style.overflow='hidden';
+}
+
+function closeVideo(){
+var overlay=document.getElementById('videoModalOverlay');
+var iframe=document.getElementById('videoModalIframe');
+iframe.src='';
+overlay.classList.remove('active');
+document.body.style.overflow='auto';
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+var overlay=document.getElementById('videoModalOverlay');
+if(overlay){
+overlay.addEventListener('click',function(e){
+if(e.target===overlay){closeVideo();}
+});
+}
+});
+</script>
         <style id="global-styles-inline-css">
             :root {
                 --wp--preset--aspect-ratio--square: 1;
@@ -449,18 +511,14 @@
         <link data-optimized="1" rel='stylesheet' id='font-awesome-5-all-css' href='https://myinfinityzone.com/wp-content/litespeed/css/63436c872bb4eca25d247fd5d7a6e898.css?ver=9a846' media='all'/>
         <link data-optimized="1" rel='stylesheet' id='font-awesome-4-shim-css' href='https://myinfinityzone.com/wp-content/litespeed/css/608218ddc7de93fe855653b943553643.css?ver=ef707' media='all'/>
         <link data-optimized="1" rel='stylesheet' id='widget-image-css' href='https://myinfinityzone.com/wp-content/litespeed/css/32d8f2aacc3c5c30f0697896ad4ab657.css?ver=60e72' media='all'/>
-        <link data-optimized="1" rel='stylesheet' id='widget-animated-headline-css' href='https://myinfinityzone.com/wp-content/litespeed/css/d6c92e5ac0389cf70249d4cafec09bbe.css?ver=ce967' media='all'/>
         <link data-optimized="1" rel='stylesheet' id='widget-heading-css' href='https://myinfinityzone.com/wp-content/litespeed/css/fc1a1188b2ea700a76356b15f3bef228.css?ver=767a1' media='all'/>
-        <link data-optimized="1" rel='stylesheet' id='widget-divider-css' href='https://myinfinityzone.com/wp-content/litespeed/css/76a7c41ae5bfb9b2febe7c13bc809e98.css?ver=b37a7' media='all'/>
-        <link data-optimized="1" rel='stylesheet' id='widget-icon-list-css' href='https://myinfinityzone.com/wp-content/litespeed/css/de332d6f49ee03eeba911ee5afc0777b.css?ver=bf4a9' media='all'/>
-        <link data-optimized="1" rel='stylesheet' id='widget-rating-css' href='https://myinfinityzone.com/wp-content/litespeed/css/5f3f680cc11aabb78ed3895bc543f68f.css?ver=01376' media='all'/>
-        <link data-optimized="1" rel='stylesheet' id='widget-nested-tabs-css' href='https://myinfinityzone.com/wp-content/litespeed/css/f9667444e6dbf6fac09de9f93fd7ee5f.css?ver=b801e' media='all'/>
-        <link data-optimized="1" rel='stylesheet' id='widget-image-box-css' href='https://myinfinityzone.com/wp-content/litespeed/css/95fdb087f26fecf25ff7645c9ae59df5.css?ver=66c73' media='all'/>
-        <link data-optimized="1" rel='stylesheet' id='elementor-post-1298-css' href='https://myinfinityzone.com/wp-content/litespeed/css/3dec29292da7d58fadda5a45edc4c34f.css?ver=1169b' media='all'/>
+        <link data-optimized="1" rel='stylesheet' id='widget-animated-headline-css' href='https://myinfinityzone.com/wp-content/litespeed/css/d6c92e5ac0389cf70249d4cafec09bbe.css?ver=ce967' media='all'/>
+        <link data-optimized="1" rel='stylesheet' id='elementor-post-146-css' href='https://myinfinityzone.com/wp-content/litespeed/css/e1ccb9eb52e176119ec217e3a2945f84.css?ver=31a00' media='all'/>
         <link data-optimized="1" rel='stylesheet' id='hello-elementor-css' href='https://myinfinityzone.com/wp-content/litespeed/css/3f88dcaf50126c931485ade0fbb7038c.css?ver=f9cb2' media='all'/>
         <link data-optimized="1" rel='stylesheet' id='hello-elementor-theme-style-css' href='https://myinfinityzone.com/wp-content/litespeed/css/8347f61e04b38c371b3d497282ff3943.css?ver=d1783' media='all'/>
         <link data-optimized="1" rel='stylesheet' id='hello-elementor-header-footer-css' href='https://myinfinityzone.com/wp-content/litespeed/css/3705fd16675a71d41b56ef5c3ac4f628.css?ver=4ddd9' media='all'/>
         <link data-optimized="1" rel='stylesheet' id='widget-nav-menu-css' href='https://myinfinityzone.com/wp-content/litespeed/css/cdf615a9dbc3a2dec8f2ad2ca8e6e72f.css?ver=46355' media='all'/>
+        <link data-optimized="1" rel='stylesheet' id='widget-icon-list-css' href='https://myinfinityzone.com/wp-content/litespeed/css/de332d6f49ee03eeba911ee5afc0777b.css?ver=bf4a9' media='all'/>
         <link data-optimized="1" rel='stylesheet' id='widget-social-icons-css' href='https://myinfinityzone.com/wp-content/litespeed/css/f000946192d889b66074b44efebc4e19.css?ver=d2311' media='all'/>
         <link data-optimized="1" rel='stylesheet' id='e-apple-webkit-css' href='https://myinfinityzone.com/wp-content/litespeed/css/9639700293dd3e4a25a59f4294d46ebe.css?ver=cb33f' media='all'/>
         <link data-optimized="1" rel='stylesheet' id='widget-form-css' href='https://myinfinityzone.com/wp-content/litespeed/css/ea2742aa7d6fa4f7728119b564b9f3a2.css?ver=241f0' media='all'/>
@@ -475,11 +533,11 @@
         <script data-optimized="1" id="jquery-migrate-js" src="https://myinfinityzone.com/wp-content/litespeed/js/5525325c94ec04ae3c2ab475dd238837.js?ver=f8639"></script>
         <script data-optimized="1" id="font-awesome-4-shim-js" src="https://myinfinityzone.com/wp-content/litespeed/js/9e78bc631be192665c6318cf8caa01fd.js?ver=a0090"></script>
         <link rel="https://api.w.org/" href="https://myinfinityzone.com/wp-json/"/>
-        <link rel="alternate" title="JSON" type="application/json" href="https://myinfinityzone.com/wp-json/wp/v2/pages/1298"/>
+        <link rel="alternate" title="JSON" type="application/json" href="https://myinfinityzone.com/wp-json/wp/v2/pages/146"/>
         <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://myinfinityzone.com/xmlrpc.php?rsd"/>
         <meta name="generator" content="WordPress 7.0"/>
-        <link rel="canonical" href="https://myinfinityzone.com/test-series/"/>
-        <link rel='shortlink' href='https://myinfinityzone.com/?p=1298'/>
+        <link rel="canonical" href="https://myinfinityzone.com/about-us/"/>
+        <link rel='shortlink' href='https://myinfinityzone.com/?p=146'/>
         <meta name="generator" content="Elementor 4.0.7; features: e_font_icon_svg, additional_custom_breakpoints; settings: css_print_method-external, google_font-enabled, font_display-swap">
         <style>
             .e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload) * {
@@ -501,10 +559,10 @@
         <meta name="theme-color" content="#1F233E">
         <link rel="icon" href="logo.png" sizes="32x32"/>
         <link rel="icon" href="logo.png" sizes="192x192"/>
-        <link rel="logo.png"/>
+        <link rel="apple-touch-icon" href="logo.png"/>
         <meta name="msapplication-TileImage" content="logo.png"/>
     </head>
-    <body class="wp-singular page-template page-template-elementor_header_footer page page-id-1298 wp-custom-logo wp-embed-responsive wp-theme-hello-elementor jkit-color-scheme hello-elementor-default elementor-default elementor-template-full-width elementor-kit-11 elementor-page elementor-page-1298">
+    <body class="wp-singular page-template page-template-elementor_header_footer page page-id-146 wp-custom-logo wp-embed-responsive wp-theme-hello-elementor jkit-color-scheme hello-elementor-default elementor-default elementor-template-full-width elementor-kit-11 elementor-page elementor-page-146">
         <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
         <header data-elementor-type="header" data-elementor-id="18" class="elementor elementor-18 elementor-location-header" data-elementor-post-type="elementor_library">
             <div class="elementor-element elementor-element-26e65fde e-flex e-con-boxed e-con e-parent" data-id="26e65fde" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
@@ -532,14 +590,14 @@
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-123">
                                         <a href="index.html" class="elementor-item">Home</a>
                                     </li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-491">
-                                        <a href="about.html" class="elementor-item">About Us</a>
+                                    <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-146 current_page_item menu-item-491">
+                                        <a href="about.html" aria-current="page" class="elementor-item elementor-item-active">About Us</a>
                                     </li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-502">
                                         <a href="course.html" class="elementor-item">Courses</a>
                                     </li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1298 current_page_item menu-item-1346">
-                                        <a href="test.html" aria-current="page" class="elementor-item elementor-item-active">Free Material</a>
+                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1346">
+                                        <a href="test.html" class="elementor-item">Free Material</a>
                                     </li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-145">
                                         <a href="contact.html" class="elementor-item">Contact Us</a>
@@ -557,14 +615,14 @@
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-123">
                                         <a href="index.html" class="elementor-item" tabindex="-1">Home</a>
                                     </li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-491">
-                                        <a href="about.html" class="elementor-item" tabindex="-1">About Us</a>
+                                    <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-146 current_page_item menu-item-491">
+                                        <a href="about.html" aria-current="page" class="elementor-item elementor-item-active" tabindex="-1">About Us</a>
                                     </li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-502">
                                         <a href="course.html" class="elementor-item" tabindex="-1">Courses</a>
                                     </li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1298 current_page_item menu-item-1346">
-                                        <a href="test.html" aria-current="page" class="elementor-item elementor-item-active" tabindex="-1">Free Material</a>
+                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1346">
+                                        <a href="test.html" class="elementor-item" tabindex="-1">Free Material</a>
                                     </li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-145">
                                         <a href="contact.html" class="elementor-item" tabindex="-1">Contact Us</a>
@@ -594,78 +652,17 @@
                 </div>
             </div>
         </header>
-        <div data-elementor-type="wp-page" data-elementor-id="1298" class="elementor elementor-1298" data-elementor-post-type="page">
-            <div class="elementor-element elementor-element-b58fd4a e-con-full e-flex e-con e-parent" data-id="b58fd4a" data-element_type="container" data-e-type="container">
-                <div class="elementor-element elementor-element-aeb9f6d elementor-hidden-mobile elementor-widget elementor-widget-image" data-id="aeb9f6d" data-element_type="widget" data-e-type="widget" data-widget_type="image.default">
-                    <img decoding="async" width="2560" height="572" src="image (1).png" class="attachment-full size-full wp-image-564" alt="" srcset="image (1).png 2560w, image (1).png 300w, image (1).png 1024w, image (1).png 768w, image (1).png 1536w, image (1).png 2048w" sizes="(max-width: 2560px) 100vw, 2560px"/>
+        <div data-elementor-type="wp-page" data-elementor-id="146" class="elementor elementor-146" data-elementor-post-type="page">
+            <div class="elementor-element elementor-element-2d59dd5 e-con-full e-flex e-con e-parent" data-id="2d59dd5" data-element_type="container" data-e-type="container">
+                <div class="elementor-element elementor-element-11c2b70 elementor-hidden-mobile elementor-widget elementor-widget-image" data-id="11c2b70" data-element_type="widget" data-e-type="widget" data-widget_type="image.default">
+                    <img decoding="async" width="2560" height="572" src="image (1).png" class="attachment-full size-full wp-image-1425" alt="" srcset="image (1).png 2560w, image (1).png 300w, image (1).png 1024w, image (1).png 768w, image (1).png 1536w, image (1).png 2048w" sizes="(max-width: 2560px) 100vw, 2560px"/>
                 </div>
-                <div class="elementor-element elementor-element-af7bf36 elementor-hidden-desktop elementor-hidden-tablet_extra elementor-hidden-tablet elementor-hidden-mobile_extra elementor-widget elementor-widget-image" data-id="af7bf36" data-element_type="widget" data-e-type="widget" data-widget_type="image.default">
-                    <img decoding="async" width="1080" height="1350" src="mobile (1).png" class="attachment-full size-full wp-image-949" alt="" srcset="mobile (1).png 1080w, mobile (1).png 240w, mobile (1).png 819w, mobile (1).png 768w" sizes="(max-width: 1080px) 100vw, 1080px"/>
+                <div class="elementor-element elementor-element-f4eeb68 elementor-hidden-desktop elementor-hidden-tablet_extra elementor-hidden-tablet elementor-hidden-mobile_extra elementor-widget elementor-widget-image" data-id="f4eeb68" data-element_type="widget" data-e-type="widget" data-widget_type="image.default">
+                    <img decoding="async" width="1080" height="1350" src="mobile (1).png" class="attachment-full size-full wp-image-1409" alt="" srcset="mobile (1).png 1080w, mobile (1).png 240w, mobile (1).png 819w, mobile (1).png 768w" sizes="(max-width: 1080px) 100vw, 1080px"/>
                 </div>
             </div>
             
-<style>
-body{font-family:Arial;margin:0;padding:20px;background:#f4f4f4}
-h1{text-align:center}
-.tabs{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:20px 0}
-.tabs button{padding:12px 18px;border:none;background:#1f233e;color:#fff;border-radius:8px;cursor:pointer}
-.section{display:none} .active{display:block}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.card{background:#fff;padding:10px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
-.card img {
-    width: 100%;
-    aspect-ratio: 16/9;       /* Mobile-friendly default */
-    object-fit: cover;
-    border-radius: 8px;
-}
 
-@media (min-width: 601px) {
-    .card img {
-        aspect-ratio: auto;    /* Reset aspect-ratio */
-        height: 250px;         /* Fixed height only on desktop */
-    }
-}.btn{display:block;text-align:center;background:#1f233e;color:#fff;text-decoration:none;padding:10px;border-radius:6px;cursor:pointer}
-@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){.grid{grid-template-columns:1fr}}
-
-/* Video Player Modal */
-.video-modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);z-index:99998;justify-content:center;align-items:center;padding:20px;box-sizing:border-box}
-.video-modal-overlay.active{display:flex}
-.video-modal-box{position:relative;width:100%;max-width:900px;background:#000;border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
-.video-modal-close{position:fixed;top:20px;right:30px;z-index:100000;background-color:rgba(255,0,0,0.8);color:white;border:2px solid white;border-radius:50%;width:50px;height:50px;font-size:30px;font-weight:bold;cursor:pointer;display:flex;justify-content:center;align-items:center}.video-modal-close:hover{color:#ff4444}
-.video-modal-box iframe{width:100%;aspect-ratio:16/9;border:none;display:block}
-</style>
-<script>
-function showTab(id){
-document.querySelectorAll('.section').forEach(x=>x.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-}
-
-function playVideo(videoId){
-var overlay=document.getElementById('videoModalOverlay');
-var iframe=document.getElementById('videoModalIframe');
-iframe.src='https://www.youtube.com/embed/'+videoId+'?autoplay=1&rel=0';
-overlay.classList.add('active');
-document.body.style.overflow='hidden';
-}
-
-function closeVideo(){
-var overlay=document.getElementById('videoModalOverlay');
-var iframe=document.getElementById('videoModalIframe');
-iframe.src='';
-overlay.classList.remove('active');
-document.body.style.overflow='auto';
-}
-
-document.addEventListener('DOMContentLoaded',function(){
-var overlay=document.getElementById('videoModalOverlay');
-if(overlay){
-overlay.addEventListener('click',function(e){
-if(e.target===overlay){closeVideo();}
-});
-}
-});
-</script>
 
 <h1>FREE MATERIAL</h1>
 <div class="tabs">
