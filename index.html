@@ -16,6 +16,7 @@
                 contain-intrinsic-size: 3000px 1500px
             }
         </style>
+
         <link data-optimized="1" rel='stylesheet' id='jkit-elements-main-css' href='https://myinfinityzone.com/wp-content/litespeed/css/cc20f10bf4dd7f645f9c3ca6e5023b30.css?ver=ad64b' media='all'/>
         <style id="wp-emoji-styles-inline-css">
             img.wp-smiley,img.emoji {
@@ -29,6 +30,50 @@
                 background: none!important;
                 padding: 0!important
             }
+/* ============================================
+   ADD "SALAI EASY MATHS" TEXT NEXT TO LOGO
+   ============================================ */
+
+/* Make the logo anchor a flex row so image + text sit side by side */
+.elementor-element-12ae07fb .elementor-widget-container > a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  text-decoration: none !important;
+}
+
+/* Insert text after the logo image */
+.elementor-element-12ae07fb .elementor-widget-container > a::after {
+  content: "Salai Easy Maths";
+  font-family: 'Archivo', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1F233E;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* ---- MOBILE SPECIFIC ---- */
+@media (max-width: 767px) {
+  .elementor-element-12ae07fb .elementor-widget-container > a::after {
+    font-size: 14px;
+    letter-spacing: 0.3px;
+  }
+
+  /* Reduce logo image size on mobile to make room */
+  .elementor-element-12ae07fb img {
+    max-height: 40px !important;
+    width: auto !important;
+  }
+}
+
+/* ---- DESKTOP ---- */
+@media (min-width: 768px) {
+  .elementor-element-12ae07fb img {
+    max-height: 55px !important;
+    width: auto !important;
+  }
+}
         </style>
         <style id="global-styles-inline-css">
             :root {
