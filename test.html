@@ -34,7 +34,96 @@ body{font-family:Arial;margin:0;padding:20px;background:#f4f4f4}
 h1{text-align:center}
 .tabs{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:20px 0}
 .tabs button{padding:12px 18px;border:none;background:#1f233e;color:#fff;border-radius:8px;cursor:pointer}
-.section{display:none} .active{display:block}
+.section { display: none; }
+.section.active { display: block; }
+
+/* Center the navbar */
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 10px;
+    background-color: #f3f4f6;
+    border-radius: 8px;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Main buttons */
+.dropbtn {
+    background-color: #4f46e5;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 180px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 99999;
+    border-radius: 5px;
+    margin-top: 5px;
+    overflow: hidden;
+}
+
+/* Show dropdown when active */
+.dropdown-content.open {
+    display: block;
+}
+
+/* Sub-section links */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
+
+/* Hover effect */
+.dropdown-content a:hover {
+    background-color: #e0e7ff;
+    color: #4f46e5;
+}
+
+/* Content sections - left aligned with left space */
+.section.active {
+    padding: 20px 20px 20px 40px;
+    margin: 10px 0;
+}
+
+/* Left space on larger screens */
+@media (min-width: 768px) {
+    .section.active {
+        padding-left: 60px;
+    }
+}
+
+/* Responsive navbar */
+@media (max-width: 500px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+    .dropdown-content {
+        position: relative;
+        width: 100%;
+    }
+}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .card{background:#fff;padding:10px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
 .card img {
@@ -61,11 +150,41 @@ h1{text-align:center}
 .video-modal-box iframe{width:100%;aspect-ratio:16/9;border:none;display:block}
 </style>
 <script>
-function showTab(id){
-document.querySelectorAll('.section').forEach(x=>x.classList.remove('active'));
-document.getElementById(id).classList.add('active');
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(function(section) {
+    section.classList.remove('active');
+  });
+  var target = document.getElementById(id);
+  if (target) {
+    target.classList.add('active');
+  }
 }
 
+function toggleDropdown(btn) {
+  var dropdownContent = btn.nextElementSibling;
+  var isOpen = dropdownContent.classList.contains('open');
+  
+  // Close all dropdowns first
+  closeAllDropdowns();
+  
+  // If it wasn't open, open it
+  if (!isOpen) {
+    dropdownContent.classList.add('open');
+  }
+}
+
+function closeAllDropdowns() {
+  document.querySelectorAll('.dropdown-content').forEach(function(dc) {
+    dc.classList.remove('open');
+  });
+}
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.dropdown')) {
+    closeAllDropdowns();
+  }
+});
 function playVideo(videoId){
 var overlay=document.getElementById('videoModalOverlay');
 var iframe=document.getElementById('videoModalIframe');
@@ -596,7 +715,7 @@ if(e.target===overlay){closeVideo();}
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-502">
                                         <a href="course.html" class="elementor-item">Courses</a>
                                     </li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1346">
+                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-502">
                                         <a href="test.html" class="elementor-item">Free Material</a>
                                     </li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-145">
@@ -665,29 +784,596 @@ if(e.target===overlay){closeVideo();}
 
 
 <h1>FREE MATERIAL</h1>
-<div class="tabs">
-<button onclick="showTab('wn')">What's New</button>
-<button onclick="showTab('ug')">UG TRB</button>
-<button onclick="showTab('pg')">PG TRB</button>
-<button onclick="showTab('poly')">POLY TRB</button>
-</div>
-<div id="wn" class="section active"><div class="grid"><div class="card"><img src="free.png"><h4>Video 1</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('rJgoOUXjwwo')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 2</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('pcbw7d5pHsM')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 3</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('X2g4xSYC97g')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 4</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('Kx5aiEXHWWc')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 5</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('qExKaptam_s')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 6</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('SUZO0cEm4PE')">Watch Now</a></div></div></div>
-<div id="ug" class="section"><div class="grid"><div class="card"><img src="free.png"><h4>Video 1</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('WvgSQ0aGIxY')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 2</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('kh-Ka-EGbDg')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 3</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('GuedXLey2gw')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 4</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('kxiEBP7I3vg')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 5</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('9f3qHEKeBoQ')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 6</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('jHEk61Fbs98')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 7</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('ZL9kum9KhPQ')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 8</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('cIhsI4bjtoU')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 9</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('cIh')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 10</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('j1IOTBvWM-A')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 11</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('TXQL_pGWEOE')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 12</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('caVNrpSRWHk')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 13</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('adTzah3PD5w')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 14</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('ToKL27t4qSo')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 15</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('3kLb-9voyuQ')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 16</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('nILoGQRKzmo')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 17</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('Z5Yz3LHjwGI')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 18</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('4oSOrEzUyrA')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 19</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('c_VGJIzg5mc')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 20</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('QKhr-8pmKMM')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 21</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('ZnUKihvGO98')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 22</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('W9EILwESRQs')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 23</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('47nToqB1vy0')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 24</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('bxOZ7LMZ8kU')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 25</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('ux_cYPWM1Zc')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 26</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('TUEBUaNmF-Q')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 27</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('6ijhKfWIHE0')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 28</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('QrtlHwdNj8M')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 29</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('0T372FMWUT8')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 30</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('WM-E9Lo10lg')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 31</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('Tsg9L8MatJs')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 32</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('W26t9L8250w')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 33</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('3rrahnQwyZQ')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 34</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('iS92sTDuthw')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 35</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('W26t9L8250w')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 36</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('uD3Jbf3OX1E')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 37</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('BRFjmaGoAhk')">Watch Now</a></div></div></div>
-<div id="pg" class="section"><div class="grid"><div class="card"><img src="free.png"><h4>Video 1</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('ZDGO5jAk42I')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 2</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('6C6WZcYJZOc')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 3</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('SP-IozdyzBQ')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 4</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('8kQsSwTH5Y8')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 5</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('rJ3dSaBriWI')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 6</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('z1JN1CCqx94')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 7</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('nOUMFji4IHk')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 8</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('6EQdg-zril4')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 9</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('2lKYr-ZxBb8')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 10</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('RByb1YmRxCI')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 11</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('4wDqm7inGE0')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 12</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('4ebhT8igrwk')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 13</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('5w1bMqMfQXk')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 14</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('1_pxcV3zZ-w')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 15</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('sJOgaO0Zw9E')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 16</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('YeRmtLAIfiw')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 17</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('mCNuftOyWEQ')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 18</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('ecGSI4sJHhM')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 19</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('rpVfSwyDND0')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 20</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('F0IReVbd39A')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 21</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('jJ7kxy4AHqQ')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 22</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('uRLnC_AM0Bs')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 23</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('68Z13-V6wL4')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 24</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('Wmeme1X5Kc4')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 25</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('0tgR6I1almk')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 26</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('AA0TCxh0hx4')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 27</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('il-ns5jGGEk')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 28</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('d0AIAwTaTdg')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 29</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('cyC5cmGtFI8')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 30</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('v-01NBoCtvk')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 31</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('158K8Xr1XTA')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 32</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('munGeRadgqE')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 33</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('ryPygJuUnGQ')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 34</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('FNU_YGNMFdc')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 35</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('LClZt3j7bRI')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 36</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('ymIn8QnJXb8')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 37</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('fhI_AgALBF4')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 38</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('3iWGvjdBcWY')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 39</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('iZx8oXipv00')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 40</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('KupPFSsgQkM')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 41</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('hN3LF5_tuZw')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 42</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('Uhj0JebHOSo')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 43</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('Ma77IQ39hRI')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 44</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('3FZ3zw1TIps')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 45</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('ScMDCFQFmkg')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 46</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('agglRDC9UxY')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 47</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('tSBlhtafTio')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 48</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('Mw9-J69fcs0')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 49</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('uqDif77Xi_E')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 50</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('ANJFPKKtPOg')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 51</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('tiPYJm8A9Y0')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 52</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('63jgfB4YupA')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 53</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('0jJVE8Kw5Jc')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 54</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('OvsQSWyFm90')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 55</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('5yClR17ed0k')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 56</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('YcDt6nkbTTg')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 57</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('XbK01mkgYb4')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 58</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('hOnPzFpupVA')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 59</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('ZQqS-0wiNjw')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 60</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('3rZhSC-f_BY')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 61</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('JPg4XFjDOW4')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 62</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('Q384vXu3c0A')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 63</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('xMhpsklkWIQ')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 64</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('D1KCfqqGqps')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 65</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('R5zZnISWHsY')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 66</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('nhrwj4_cOjQ')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 67</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('4UkiWyTLrEk')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 68</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('1-Qo0MVjmJk')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 69</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('K3uEpGnF4M8')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 70</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('ac3bSboCi9I')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 71</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('OcY8sympnOA')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 72</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('9kiKm6yTekQ')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 73</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('H-VNyDPe3OE')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 74</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('rGw9ky9v9VI')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 75</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('O5vSDe4X4Jo')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 76</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('Wq1g_TTJIzQ')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 77</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('aV3jQMJFeV8')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 78</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('m2kmjSEYkjY')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 79</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('vDRLRsqR2lA')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 80</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('2kdGkemOIoU')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 81</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('ntAVWrzjubg')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 82</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('1oxYu94ZgxM')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 83</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('15oM0dVKEak')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 84</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('GkK6GF8weTo')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 85</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('PfTClE19vNQ')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 86</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('ZHvatIWmGlc')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 87</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('1zZ9A2758pE')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 88</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('EUTU1DYROv4')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 89</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('svpAOHPhC6Q')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 90</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('Oeu4RnhyLj8')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 91</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('22u4Z5wC-J8')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 92</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('XiEAtJlTJqM')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 93</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('QifD_zXpUrk')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 94</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('Sq3acXEr0L8')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 95</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('zFlmAKc57uU')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 96</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('Ofh7VPwPXUw')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 97</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('E1Ys_xKpUQs')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 98</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('imxtYXqwexI')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 99</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('0otE1eGNlqo')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 100</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('r_U2AKv1FEw')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 101</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('mO0yEnC7I04')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 102</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('gu19SDNCxsc')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 103</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('nOu0yIv6DzQ')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 104</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('WtJIAkTo2gw')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 105</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('eFqfERdRYA0')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 106</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('gn9f7Il2qTc')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 107</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('kSkreCDLpUc')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 108</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('2Rtwku0t5Z8')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 109</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('mPgoeHcFD48')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 110</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('Vix8gXALxiA')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 111</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('URUc_2tihBw')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 112</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('5E3sNEMhW0o')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 113</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('z1GHxZf8Wyc')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 114</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('ByYyRZmDT0Q')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 115</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('6oBP-1-7ReY')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 116</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('JfPqAVJ3C5Y')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 117</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('g8BOEUp701g')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 118</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('m9A9zI_E1Bo')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 119</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('lVNCVzIvIKI')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 120</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('XBK-DFNgjIo')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 121</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('TqDCps2Z5pk')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 122</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('G4q1xI8hnLc')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 123</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('BhP0gCCqYzo')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 124</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('GpWrFxlDlCE')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 125</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('t7Fipno8FzU')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 126</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('IfC5HWEyzbw')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 127</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('KK233zfvj8M')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 128</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('-z3CW37uahw')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 129</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('7a2mwDv5BS4')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 130</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('yBZBV93es2Y')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 131</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('NHTdJt-Ccxs')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 132</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('_VFFSosVRPw')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 133</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('wNcSds3V25o')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 134</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('Y_KXN-m74Ys')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 135</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('xg5QRW00yVo')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 136</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('062bGZ2WTUU')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 137</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('cn6pWgzM9Pc')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 138</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('g9Gd9iDTUtQ')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 139</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('hZUEbOc0A6Y')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 140</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('HdyuBHHIzXA')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 141</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('fEGYtrPIEEo')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 142</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('BhjoclG57p8')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 143</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('PyYIgYy-JHI')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 144</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('cfQIvGk-Hec')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 145</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('wfl5_YQp4jg')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 146</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('m3Izez2Ble8')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 147</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('xAB5wbelVZ8')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 148</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('MJ2Afe6XTTU')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 149</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('NWA_3TpPMZw')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 150</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('mHZqyKccYjU')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 151</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('W7SEnqsekaE')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 152</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('3jzAue0xS5k')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 153</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('7ZsJ5uIPazw')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 154</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('C2rhUAH9HR8')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 155</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('fKjjMXeEUvg')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 156</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('IlBsDYoZDb4')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 157</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('dmyPRMBN1pE')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 158</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('RUohU46AAuw')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 159</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('whVuJW9yRu8')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 160</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('EphxN8OJzdo')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 161</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('gKGjA4jONyQ')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 162</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('CzFBrD_Y4OU')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 163</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('Ta00kv5rUEM')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 164</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('pBg0HKAKPsg')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 165</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('8mUCvXKP1Io')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 166</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('1odDzq9xsUw')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 167</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('tJtlaoJtGR8')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 168</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('DI6BHGq2fKg')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 169</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('5LXdh6D5toY')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 170</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('xiETLEdO2DY')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 171</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('1uGIl1JovxY')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 172</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('u2FXfTz6b6g')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 173</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('ryLyQ9nr084')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 174</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('KxVX3gOK0Pk')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 175</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('0gTWTQu8lmA')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 176</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('5YiT071Rt6o')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 177</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('EfwSG8NJYi8')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 178</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('EzDNxSbfB8U')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 179</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('Q6KpBtlqMMc')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 180</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('DIe52GyySQY')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 181</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('PU5dBtBUAaw')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 182</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('mqTqhZBNsPI')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 183</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('u0j9m5HaUcA')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 184</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('pCHoZw-HCUk')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 185</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('bhqalgEp6NM')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 186</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('FvWZbhX8Bdw')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 187</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('GUi-oN_pUUE')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 188</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('ZhNnh4FMNmY')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 189</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('q0Pgdd7ZNR4')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 190</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('aU232AyiI1w')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 191</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('U11xkuwoSpM')">Watch Now</a></div><div class="card"><img src="free.png"><h4>Video 192</h4><a class="btn" href="javascript:void(0)" onclick="playVideo('v4N8hOsjSV4')">Watch Now</a></div></div></div>
-<div id="poly" class="section"><div class="grid"></div></div>
 
-<!-- Video Player Modal -->
-<!-- Added onclick="closeVideo()" to the overlay -->
-<div id="videoModalOverlay" class="video-modal-overlay" onclick="closeVideo()">
-  
-  <!-- Added onclick="event.stopPropagation()" so clicking the video itself DOESN'T close it -->
-  <div class="video-modal-box" onclick="event.stopPropagation()">
-    <iframe id="videoModalIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<div class="navbar">
+  <!-- Study Materials Dropdown -->
+  <div class="dropdown">
+    <button class="dropbtn" onclick="toggleDropdown(this); showTab('sm')">Study Materials ▾</button>
+    <div class="dropdown-content">
+      <a href="javascript:void(0)" onclick="closeAllDropdowns(); showTab('sm')">Sample Material</a>
+      <a href="javascript:void(0)" onclick="closeAllDropdowns(); showTab('sy')">Syllabus</a>
+      <a href="javascript:void(0)" onclick="closeAllDropdowns(); showTab('pg-history')">Text Books</a>
+    </div>
   </div>
-  
-  <!-- The Close Button -->
-  <button class="video-modal-close" onclick="closeVideo()">&times;</button>
+
+  <!-- Videos Dropdown -->
+  <div class="dropdown">
+    <button class="dropbtn" onclick="toggleDropdown(this); showTab('whats-new')">Videos ▾</button>
+    <div class="dropdown-content">
+      <a href="javascript:void(0)" onclick="closeAllDropdowns(); showTab('whats-new')">What's New</a>
+      <a href="javascript:void(0)" onclick="closeAllDropdowns(); showTab('ug-trb')">UG TRB</a>
+      <a href="javascript:void(0)" onclick="closeAllDropdowns(); showTab('pg-trb')">PG TRB</a>
+    </div>
+  </div>
 </div>
+
+<!-- ========== SECTIONS ========== -->
+
+<!-- Study Material Section (default visible) -->
+<div id="sm" class="section active">
+  <h2>Sample Material</h2>
+<p><strong>UG TRB</strong></p>
+
+  
+  <p><a href="https://drive.google.com/file/d/1zNRKa6cBYUo9gEMVdReF84F-pc7iTmxj/view?usp=drive_link" target="_blank" rel="noreferrer noopener">Open Unit 01 – Algebra & Trigonometry</a></p>
+
+  <p><a href="https://drive.google.com/file/d/14UkdR50jMoy2W54y2RFlOGR-R_IPS_E8/view?usp=drive_link" target="_blank" rel="noreferrer noopener">Open Unit 02 – Differential Calculus, Integral Calculus & Analytical Geometry (2D)</a></p>
+
+  <p><a href="https://drive.google.com/file/d/1RLi_yJ18wiitvXrk1Cc8BCUwh_3pvDwa/view?usp=drive_link" target="_blank" rel="noreferrer noopener">Open Unit 03 – Differential Equations & Laplace Transform</a></p>
+
+  <p><a href="https://drive.google.com/file/d/111wnG45ouHqe7dKmFUdY4gSZDM0Jz2DI/view?usp=drive_link" target="_blank" rel="noreferrer noopener">Open Unit 04 – Vector Calculus, Fourier Series & Fourier Transforms</a></p>
+
+  <p><a href="https://drive.google.com/file/d/1PR-54RDWYt3HyDLqAdyxf4wE-gAKnFCf/view?usp=drive_link" target="_blank" rel="noreferrer noopener">Open Unit 05 – Algebraic Structures</a></p>
+
+  <p><a href="https://drive.google.com/file/d/1DBfyCAlHpTFSszK3plbd2ryAmLLdRpKt/view?usp=drive_link" target="_blank" rel="noreferrer noopener">Open Unit 06 – Real Analysis</a></p>
+
+  <p><a href="https://drive.google.com/file/d/1BwFYMk0rXWqoNFVIuXwRZARJ8G_dBEKw/view?usp=drive_link" target="_blank" rel="noreferrer noopener">Open Unit 07 – Complex Analysis</a></p>
+
+  <p><a href="https://drive.google.com/file/d/1_p683h6iOjL1xqY6bZwRvPq4xJ9WQsyf/view?usp=drive_link" target="_blank" rel="noreferrer noopener">Open Unit 08 – Mechanics</a></p>
+
+  <p><a href="https://drive.google.com/file/d/1sMrNbwzb56RDYC-43lZdiFR8ipV-F45b/view?usp=drive_link" target="_blank" rel="noreferrer noopener">Open Unit 09 – Operations Research</a></p>
+
+  <p><a href="https://drive.google.com/file/d/1d..." target="_blank" rel="noreferrer noopener">Open Unit 10 – Statistics & Probability</a></p>
+</div>
+
+<!-- Syllabus Section -->
+<div id="sy" class="section">
+  <h2>Syllabus</h2>
+   <p><a href="https://drive.google.com/file/d/1jS-n8sKHjPfrv4kxPx3sP98ge773_Df9/view?usp=sharing" target="_blank" rel="noreferrer noopener">Open UG TRB MATHS</a></p>
+
+<p><a href="https://drive.google.com/file/d/1AMTouck7yNNMtQGNz2mgAonpLIyAULEE/view?usp=sharing" target="_blank" rel="noreferrer noopener">Open PG TRB MATHS – NEW SYLLABUS</a></p>
+
+<p><a href="https://drive.google.com/file/d/1yJnq5CJ_fq22_LXl7lNmKHnfmG0PMEo2/view?usp=sharing" target="_blank" rel="noreferrer noopener">Open PG TRB MATHS – OLD SYLLABUS</a></p>
+
+<p><a href="https://drive.google.com/file/d/1d8O0sSHfcAZ-YaJaY-B1cayrZLm9Zu4o/view?usp=sharing" target="_blank" rel="noreferrer noopener">Open POLY TRB MATHS</a></p>
+
+<p><a href="https://drive.google.com/file/d/16GjVfWb4Ux-MZlaT-NrZgIsvIm3gVh9g/view?usp=sharing" target="_blank" rel="noreferrer noopener">Open ENGG. TRB MATHS</a></p>
+
+<p><a href="https://drive.google.com/file/d/1sCmY-r-cVHWwLkAJKO65aZYIaqHSiIvV/view?usp=sharing" target="_blank" rel="noreferrer noopener">Open SET &amp; DIET</a></p>
+
+<p><a href="https://drive.google.com/file/d/15kfK1ffMqVOy4cfgW04RbXT9i3jEsQtW/view?usp=sharing" target="_blank" rel="noreferrer noopener">Open BEO</a></p>
+
+<p><a href="https://drive.google.com/file/d/1tjcAO5ANTQ7EJMIKSJ7ePB3ty87SMNYg/view?usp=sharing" target="_blank" rel="noreferrer noopener">Open TNPSC ASI – OLD SYLLABUS</a></p>
+</div>
+
+<!-- Text Books Section -->
+<div id="pg-history" class="section">
+  <h2>Text Books</h2>
+  <p><a href="https://drive.google.com/drive/folders/1dk4somVhMoqiLx63nnHQObddoBmcdLqC?usp=drive_link" target="_blank" rel="noreferrer noopener">Open 01 – ALGEBRA</a></p>
+  <p><a href="https://drive.google.com/drive/folders/1b7dM8U4QifoWCBou95SByqjdPp_YM5YG?usp=drive_link" target="_blank" rel="noreferrer noopener">Open 02 – REAL ANALYSIS</a></p>
+  <p><a href="https://drive.google.com/drive/folders/1BKG6vKkLbGtO6WgZP11s1sTY1hvLsfut?usp=drive_link" target="_blank" rel="noreferrer noopener">Open 03 – TOPOLOGY</a></p>
+  <p><a href="https://drive.google.com/drive/folders/1Qy9ycxYraYtQ8_1qYYvwf_cbKO5ogXo9?usp=drive_link" target="_blank" rel="noreferrer noopener">Open 04 – COMPLEX ANALYSIS</a></p>
+  <p><a href="https://drive.google.com/drive/folders/1Eg27LqNaqm9vKbDL3XNNfZRT_ajxPxtg?usp=drive_link" target="_blank" rel="noreferrer noopener">Open 05 – FUNCTIONAL ANALYSIS</a></p>
+  <p><a href="https://drive.google.com/drive/folders/11Y-mkwQtyyCa4Yjt_UAZc9T8N6KgmoH-?usp=drive_link" target="_blank" rel="noreferrer noopener">Open 06 – DIFFERENTIAL GOMETRY</a></p>
+  <p><a href="https://drive.google.com/drive/folders/1p8hBh7tUASrvZxwMe1P7t9uHWRAACtee?usp=drive_link" target="_blank" rel="noreferrer noopener">Open 07 – DIFFERENTIAL EQUATIONS</a></p>
+  <p><a href="https://drive.google.com/drive/folders/1B37GFYrqHT7bH4D6xRgFnxosU_ITxxSa?usp=drive_link" target="_blank" rel="noreferrer noopener">Open 08 – CLASSICAL MECHANICS & NUMERICAL ANALYSIS</a></p>
+  <p><a href="https://drive.google.com/drive/folders/16eGQzhgLP06NTgW5G_ZmlvdPSgsKHu46?usp=drive_link" target="_blank" rel="noreferrer noopener">Open 09 – OPERATION RESEARCH</a></p>
+  <p><a href="https://drive.google.com/drive/folders/1s_lPCxA7s8pJY3zE1TOd3s7Sh8aB0Wix?usp=drive_link" target="_blank" rel="noreferrer noopener">Open 10 – PROBABILITY THEORY</a></p>
+</div>
+
+<!-- What's New Section -->
+<div id="whats-new" class="section">
+  <h2>What's New - Videos</h2>
+  <p><a href="https://youtu.be/rJgoOUXjwwo" target="_blank" rel="noreferrer noopener">Open HOW TO DOWNLOAD MOBILE APP | HOW TO JOIN ONLINE TEST BATCH | HOW TO ATTEND ONLINE TEST</a></p>
+
+<p><a href="https://youtube.com/shorts/pCbw7d5pHsM?feature=share" target="_blank" rel="noreferrer noopener">Open HOW TO DOWNLOAD OUR MOBILE APP</a></p>
+
+<p><a href="https://youtu.be/X2g4xSYC97g" target="_blank" rel="noreferrer noopener">Open UG TRB ONLINE CLASS | ONLINE TEST BATCH | STUDY MATERIAL | FEES DETAILS</a></p>
+
+<p><a href="https://youtu.be/Kx5aiEXHWWc" target="_blank" rel="noreferrer noopener">Open UG TRB STUDY MATERIAL</a></p>
+
+<p><a href="https://youtube.com/shorts/qExKaptam_s?feature=share" target="_blank" rel="noreferrer noopener">Open UG TRB STUDY MATERIAL | FULL DETAILS</a></p>
+
+<p><a href="https://youtu.be/SUZO0cEm4PE" target="_blank" rel="noreferrer noopener">Open UG TRB MATHS | PG TRB MATHS | SYLLABUS COMMON UNITS</a></p>
+</div>
+
+<!-- UG TRB Videos Section -->
+<div id="ug-trb" class="section">
+  <h2>UG TRB Videos</h2>
+<p><h2>UNIT – 1 – ALGEBRA AND TRIGONOMETRY</h2></p>
+<p><strong>CHAPTER 1 – THEOREY OF EQUATION</strong></p>
+
+<p><a href="https://youtu.be/WvgSQ0aGIxY" target="_blank" rel="noreferrer noopener">Open 01 – POLYNOMIAL EQUATION</a></p>
+
+<p><a href="https://youtu.be/kh-Ka-EGbDg" target="_blank" rel="noreferrer noopener">Open 02 – DIVISION ALGORITHM, REMAINDER &amp; FACTOR THEOREM</a></p>
+
+<p><a href="https://youtu.be/GuedXLey2gw" target="_blank" rel="noreferrer noopener">Open 03 – IMAGINARY AND IRRATIONAL ROOTS</a></p>
+
+<p><a href="https://youtu.be/kxiEBP7I3vg" target="_blank" rel="noreferrer noopener">Open 04 – PROBLEMS ON IMAGINARY &amp; IRRATIONAL ROOTS – PART 1</a></p>
+
+<p><a href="https://youtu.be/9f3qHEKeBoQ" target="_blank" rel="noreferrer noopener">Open 05 – PROBLEMS ON IMAGINARY &amp; IRRATIONAL ROOTS – PART 2</a></p>
+
+<p><a href="https://youtu.be/jHEk61Fbs98" target="_blank" rel="noreferrer noopener">Open 06 – RELATION BETWEEN ROOTS AND COEFFICIENTS</a></p>
+
+<p><a href="https://youtu.be/ZL9kum9KhPQ" target="_blank" rel="noreferrer noopener">Open 07 – STANDARD RESULTS IN CUBIC EQUATION – PART 1</a></p>
+
+<p><a href="https://youtu.be/cIhsI4bjtoU" target="_blank" rel="noreferrer noopener">Open 08 – PROBLEMS SOLVING IN CUBIC EQUATION – PART 2</a></p>
+
+<p><a href="https://youtu.be/j1IOTBvWM-A" target="_blank" rel="noreferrer noopener">Open 09 – STANDARD RESULTS IN BI-QUADRATIC EQUATION – PART 3</a></p>
+
+<p><a href="https://youtu.be/TXQL_pGWEOE" target="_blank" rel="noreferrer noopener">Open 10 – PROBLEMS SOLVING IN BI-QUADRATIC EQUATION – PART 4</a></p>
+
+<p><a href="https://youtu.be/caVNrpSRWHk" target="_blank" rel="noreferrer noopener">Open 11 – SYMMETRIC FUNCTION OF ROOTS IN TERMS OF COEFFICIENTS</a></p>
+
+<p><a href="https://youtu.be/adTzah3PD5w" target="_blank" rel="noreferrer noopener">Open 12 – PROBLEMS IN CUBIC EQUATION – PART 1</a></p>
+
+<p><a href="https://youtu.be/ToKL27t4qSo" target="_blank" rel="noreferrer noopener">Open 13 – PROBLEMS IN BI-QUADRATIC EQUATION – PART 2</a></p>
+
+<p><a href="https://youtu.be/3kLb-9voyuQ" target="_blank" rel="noreferrer noopener">Open 14 – SUM OF THE POWERS OF THE ROOTS</a></p>
+
+<p><a href="https://youtu.be/nILoGQRKzmo" target="_blank" rel="noreferrer noopener">Open 15 – PROBLEMS BASED ON SUM OF THE POWER OF THE ROORS – PART 1</a></p>
+
+<p><a href="https://youtu.be/Z5Yz3LHjwGI" target="_blank" rel="noreferrer noopener">Open 16 – TRANSFORMATION OF EQUATION (ROOTS MULTIPLIED BY GIVEN NUMBER) – PART 1</a></p>
+
+<p><a href="https://youtu.be/4oSOrEzUyrA" target="_blank" rel="noreferrer noopener">Open 17 – TRANSFORMATION OF EQUATION (ROOTS WITH SIGNS CHANGED) – PART 2</a></p>
+
+<p><a href="https://youtu.be/c_VGJIzg5mc" target="_blank" rel="noreferrer noopener">Open 18 – TRANSFORMATION OF EQUATION (ROOTS ARE DIMINISHED BY h) – PART 3</a></p>
+
+<p><a href="https://youtu.be/QKhr-8pmKMM" target="_blank" rel="noreferrer noopener">Open 19 – RECIPROCAL ROOTS – PART 1</a></p>
+
+<p><a href="https://youtu.be/ZnUKihvGO98" target="_blank" rel="noreferrer noopener">Open 20 – RECIPROCAL EQUATION – PART 2</a></p>
+
+<p><a href="https://youtu.be/W9EILwESRQs" target="_blank" rel="noreferrer noopener">Open 21 – STANDARD RECIPROCAL EQUATION – PART 3</a></p>
+
+<p><a href="https://youtu.be/47nToqB1vy0" target="_blank" rel="noreferrer noopener">Open 22 – PROBLEMS BASED ON RECIPROCAL EQUATION – PART 4</a></p>
+
+<p><a href="https://youtu.be/bxOZ7LMZ8kU" target="_blank" rel="noreferrer noopener">Open 23 – REMOVAL OF TERMS</a></p>
+
+<p><a href="https://youtu.be/ux_cYPWM1Zc" target="_blank" rel="noreferrer noopener">Open 24 – MULTIPLE ROOTS</a></p>
+
+<p><a href="https://youtu.be/TUEBUaNmF-Q" target="_blank" rel="noreferrer noopener">Open 25 – NATURE &amp; POSITION OF ROOTS</a></p>
+
+<p><a href="https://youtu.be/6ijhKfWIHE0" target="_blank" rel="noreferrer noopener">Open 26 – PROPERTIES OF POLYNOMIAL – PART 1</a></p>
+
+<p><a href="https://youtu.be/QrtlHwdNj8M" target="_blank" rel="noreferrer noopener">Open 27 – DESCARTES RULE OF SINGS – PART 2</a></p>
+
+<p><a href="https://youtu.be/0T372FMWUT8" target="_blank" rel="noreferrer noopener">Open 28 – PROBLEMS ON DESCARTES RULE OF SINGS – PART 3</a></p>
+
+<p><a href="https://youtu.be/WM-E9Lo10lg" target="_blank" rel="noreferrer noopener">Open 29 – HORNERS METHOD</a></p>
+
+<p><a href="https://youtu.be/Tsg9L8MatJs" target="_blank" rel="noreferrer noopener">Open 30 – CARDENS METHOD</a></p>
+
+<p><a href="https://youtu.be/W26t9L8250w" target="_blank" rel="noreferrer noopener">Open 31 – BINOMIAL SERIES – PART 1</a></p>
+
+<p><a href="https://youtu.be/3rrahnQwyZQ" target="_blank" rel="noreferrer noopener">Open 32 – BINOMIAL COEFFICIENTS – PART 2</a></p>
+
+<p><a href="https://youtu.be/iS92sTDuthw" target="_blank" rel="noreferrer noopener">Open 33 – SUMMATION OF BINOMIAL SERIES – PART 3</a></p>
+
+<p><a href="https://youtu.be/uD3Jbf3OX1E" target="_blank" rel="noreferrer noopener">Open 34 – EXPONENTIAL SERIES – PART 4</a></p>
+
+<p><a href="https://youtu.be/BRFjmaGoAhk" target="_blank" rel="noreferrer noopener">Open 35 – LOGARITHMIC SERIES – PART 5</a></p>
+
+<p><strong>CHAPTER 2 – MATRICES</strong></p>
+
+</div>
+
+<!-- PG TRB Videos Section -->
+<div id="pg-trb" class="section">
+  <h2>PG TRB Videos</h2>
+<p><h2>Algebra</h2></p>
+<p><a href="https://youtu.be/ZDGO5jAk42I" target="_blank" rel="noreferrer noopener">Open Group</a></p>
+
+<p><a href="https://youtu.be/6C6WZcYJZOc" target="_blank" rel="noreferrer noopener">Open Subgroup, Product Group</a></p>
+
+<p><a href="https://youtu.be/SP-IozdyzBQ" target="_blank" rel="noreferrer noopener">Open Cyclic Group</a></p>
+
+<p><a href="https://youtu.be/8kQsSwTH5Y8" target="_blank" rel="noreferrer noopener">Open Normal Subgroup</a></p>
+
+<p><a href="https://youtu.be/rJ3dSaBriWI" target="_blank" rel="noreferrer noopener">Open Automorphism</a></p>
+
+<p><a href="https://youtu.be/z1JN1CCqx94" target="_blank" rel="noreferrer noopener">Open Permutations</a></p>
+
+<p><a href="https://youtu.be/nOUMFji4IHk" target="_blank" rel="noreferrer noopener">Open Problems on Permutations</a></p>
+
+<p><a href="https://youtu.be/6EQdg-zril4" target="_blank" rel="noreferrer noopener">Open Sylow’s Theorem</a></p>
+
+<p><a href="https://youtu.be/2lKYr-ZxBb8" target="_blank" rel="noreferrer noopener">Open Rings</a></p>
+
+<p><a href="https://youtu.be/RByb1YmRxCI" target="_blank" rel="noreferrer noopener">Open Field</a></p>
+
+<p><a href="https://youtu.be/4wDqm7inGE0" target="_blank" rel="noreferrer noopener">Open Types of Ideals</a></p>
+
+<p><a href="https://youtu.be/4ebhT8igrwk" target="_blank" rel="noreferrer noopener">Open Euclidean Ring</a></p>
+
+<p><a href="https://youtu.be/5w1bMqMfQXk" target="_blank" rel="noreferrer noopener">Open Commutator Subgroup</a></p>
+
+<p><a href="https://youtu.be/1_pxcV3zZ-w" target="_blank" rel="noreferrer noopener">Open Types of Polynomial</a></p>
+
+<p><a href="https://youtu.be/sJOgaO0Zw9E" target="_blank" rel="noreferrer noopener">Open Extension Field</a></p>
+
+<p><a href="https://youtu.be/YeRmtLAIfiw" target="_blank" rel="noreferrer noopener">Open Splitting Field</a></p>
+
+<p><a href="https://youtu.be/mCNuftOyWEQ" target="_blank" rel="noreferrer noopener">Open Fixed Field</a></p>
+
+<p><a href="https://youtu.be/ecGSI4sJHhM" target="_blank" rel="noreferrer noopener">Open Vector Space</a></p>
+
+<p><a href="https://youtu.be/rpVfSwyDND0" target="_blank" rel="noreferrer noopener">Open Dual Space</a></p>
+
+<p><a href="https://youtu.be/F0IReVbd39A" target="_blank" rel="noreferrer noopener">Open Quotient Space</a></p>
+
+<p><a href="https://youtu.be/jJ7kxy4AHqQ" target="_blank" rel="noreferrer noopener">Open Eigen Values &amp; Eigen Vectors</a></p>
+
+<p><a href="https://youtu.be/uRLnC_AM0Bs" target="_blank" rel="noreferrer noopener">Open Matrices</a></p>
+
+<p><a href="https://youtu.be/68Z13-V6wL4" target="_blank" rel="noreferrer noopener">Open Transformations</a></p>
+
+<p><a href="https://youtu.be/Wmeme1X5Kc4" target="_blank" rel="noreferrer noopener">Open Projection</a></p>
+
+<p><a href="https://youtu.be/0tgR6I1almk" target="_blank" rel="noreferrer noopener">Open Canonical Form</a></p>
+
+<p><a href="https://youtu.be/AA0TCxh0hx4" target="_blank" rel="noreferrer noopener">Open Full Chapter Revision</a></p>
+  
+
+<p><h2>REAL ANALYSIS</h2></p>
+
+
+
+
+<p><a href="https://youtu.be/il-ns5jGGEk" target="_blank" rel="noreferrer noopener">Open Basic Definitions</a></p>
+
+<p><a href="https://youtu.be/d0AIAwTaTdg" target="_blank" rel="noreferrer noopener">Open Countable and Uncountable Set</a></p>
+
+<p><a href="https://youtu.be/cyC5cmGtFI8" target="_blank" rel="noreferrer noopener">Open Bounded and Unbounded Set</a></p>
+
+<p><a href="https://youtu.be/v-01NBoCtvk" target="_blank" rel="noreferrer noopener">Open Metric Space</a></p>
+
+<p><a href="https://youtu.be/158K8Xr1XTA" target="_blank" rel="noreferrer noopener">Open Open Sets</a></p>
+
+<p><a href="https://youtu.be/munGeRadgqE" target="_blank" rel="noreferrer noopener">Open Closed Sets</a></p>
+
+<p><a href="https://youtu.be/ryPygJuUnGQ" target="_blank" rel="noreferrer noopener">Open Closure</a></p>
+
+<p><a href="https://youtu.be/FNU_YGNMFdc" target="_blank" rel="noreferrer noopener">Open Complete Metric Space</a></p>
+
+<p><a href="https://youtu.be/LClZt3j7bRI" target="_blank" rel="noreferrer noopener">Open Connectedness</a></p>
+
+<p><a href="https://youtu.be/ymIn8QnJXb8" target="_blank" rel="noreferrer noopener">Open Compactness</a></p>
+
+<p><a href="https://youtu.be/fhI_AgALBF4" target="_blank" rel="noreferrer noopener">Open Totally Bounded</a></p>
+
+<p><a href="https://youtu.be/3iWGvjdBcWY" target="_blank" rel="noreferrer noopener">Open Continuous Functions</a></p>
+
+<p><a href="https://youtu.be/iZx8oXipv00" target="_blank" rel="noreferrer noopener">Open Derivative Functions</a></p>
+
+<p><a href="https://youtu.be/KupPFSsgQkM" target="_blank" rel="noreferrer noopener">Open Taylor &amp; Maclurin Series</a></p>
+
+<p><a href="https://youtu.be/hN3LF5_tuZw" target="_blank" rel="noreferrer noopener">Open Sequence</a></p>
+
+<p><a href="https://youtu.be/Uhj0JebHOSo" target="_blank" rel="noreferrer noopener">Open Cauchy Sequence</a></p>
+
+<p><a href="https://youtu.be/Ma77IQ39hRI" target="_blank" rel="noreferrer noopener">Open Theorems on Limits</a></p>
+
+<p><a href="https://youtu.be/3FZ3zw1TIps" target="_blank" rel="noreferrer noopener">Open Series</a></p>
+
+<p><a href="https://youtu.be/ScMDCFQFmkg" target="_blank" rel="noreferrer noopener">Open Test in Series</a></p>
+
+<p><a href="https://youtu.be/agglRDC9UxY" target="_blank" rel="noreferrer noopener">Open Alternating Series</a></p>
+
+<p><a href="https://youtu.be/tSBlhtafTio" target="_blank" rel="noreferrer noopener">Open Problems on Limits: Part – 1</a></p>
+
+<p><a href="https://youtu.be/Mw9-J69fcs0" target="_blank" rel="noreferrer noopener">Open Problems on Limits: Part – 2</a></p>
+
+<p><a href="https://youtu.be/uqDif77Xi_E" target="_blank" rel="noreferrer noopener">Open Problems on Continuity: Part – 1</a></p>
+
+<p><a href="https://youtu.be/ANJFPKKtPOg" target="_blank" rel="noreferrer noopener">Open Problems on Continuity: Part – 2</a></p>
+
+<p><a href="https://youtu.be/tiPYJm8A9Y0" target="_blank" rel="noreferrer noopener">Open Problems on Comparison Test</a></p>
+
+<p><a href="https://youtu.be/63jgfB4YupA" target="_blank" rel="noreferrer noopener">Open Problems on Ratio Test: Part – 1</a></p>
+
+<p><a href="https://youtu.be/0jJVE8Kw5Jc" target="_blank" rel="noreferrer noopener">Open Problems on Ratio Test: Part – 2</a></p>
+
+<p><a href="https://youtu.be/OvsQSWyFm90" target="_blank" rel="noreferrer noopener">Open Measure Zero</a></p>
+
+<p><a href="https://youtu.be/5yClR17ed0k" target="_blank" rel="noreferrer noopener">Open Riemann Integral</a></p>
+
+<p><a href="https://youtu.be/YcDt6nkbTTg" target="_blank" rel="noreferrer noopener">Open Riemann Stieltjes Integral</a></p>
+
+<p><a href="https://youtu.be/XbK01mkgYb4" target="_blank" rel="noreferrer noopener">Open Measurable Set</a></p>
+
+<p><a href="https://youtu.be/hOnPzFpupVA" target="_blank" rel="noreferrer noopener">Open Measurable Function</a></p>
+
+<p><a href="https://youtu.be/ZQqS-0wiNjw" target="_blank" rel="noreferrer noopener">Open Problems on Fourier Series</a></p>
+
+<p><a href="https://youtu.be/3rZhSC-f_BY" target="_blank" rel="noreferrer noopener">Open Full Chapter Revision</a></p>
+
+<p><h2>COMPLEX ANALYSIS</h2></p>
+<p><a href="https://youtu.be/JPg4XFjDOW4" target="_blank" rel="noreferrer noopener">Open Basic Concepts</a></p>
+
+<p><a href="https://youtu.be/Q384vXu3c0A" target="_blank" rel="noreferrer noopener">Open Limits</a></p>
+
+<p><a href="https://youtu.be/xMhpsklkWIQ" target="_blank" rel="noreferrer noopener">Open Continuous</a></p>
+
+<p><a href="https://youtu.be/D1KCfqqGqps" target="_blank" rel="noreferrer noopener">Open Differentiability</a></p>
+
+<p><a href="https://youtu.be/R5zZnISWHsY" target="_blank" rel="noreferrer noopener">Open Analytic Function</a></p>
+
+<p><a href="https://youtu.be/nhrwj4_cOjQ" target="_blank" rel="noreferrer noopener">Open Problems on Analytic Functions</a></p>
+
+<p><a href="https://youtu.be/4UkiWyTLrEk" target="_blank" rel="noreferrer noopener">Open Harmonic Function</a></p>
+
+<p><a href="https://youtu.be/1-Qo0MVjmJk" target="_blank" rel="noreferrer noopener">Open Problems on Harmonic Function</a></p>
+
+<p><a href="https://youtu.be/K3uEpGnF4M8" target="_blank" rel="noreferrer noopener">Open Sequence</a></p>
+
+<p><a href="https://youtu.be/ac3bSboCi9I" target="_blank" rel="noreferrer noopener">Open Series</a></p>
+
+<p><a href="https://youtu.be/OcY8sympnOA" target="_blank" rel="noreferrer noopener">Open Uniform Converges</a></p>
+
+<p><a href="https://youtu.be/9kiKm6yTekQ" target="_blank" rel="noreferrer noopener">Open Problems</a></p>
+
+<p><a href="https://youtu.be/H-VNyDPe3OE" target="_blank" rel="noreferrer noopener">Open Conformal Mapping</a></p>
+
+<p><a href="https://youtu.be/rGw9ky9v9VI" target="_blank" rel="noreferrer noopener">Open Bilinear Transformation</a></p>
+
+<p><a href="https://youtu.be/O5vSDe4X4Jo" target="_blank" rel="noreferrer noopener">Open Types of Bilinear Transformation</a></p>
+
+<p><a href="https://youtu.be/Wq1g_TTJIzQ" target="_blank" rel="noreferrer noopener">Open Mappings</a></p>
+
+<p><a href="https://youtu.be/aV3jQMJFeV8" target="_blank" rel="noreferrer noopener">Open Taylor Series</a></p>
+
+<p><a href="https://youtu.be/m2kmjSEYkjY" target="_blank" rel="noreferrer noopener">Open Maclaurin’s Series</a></p>
+
+<p><a href="https://youtu.be/vDRLRsqR2lA" target="_blank" rel="noreferrer noopener">Open Laurent’s Series</a></p>
+
+<p><a href="https://youtu.be/2kdGkemOIoU" target="_blank" rel="noreferrer noopener">Open Cauchy’s Theorem</a></p>
+
+<p><a href="https://youtu.be/ntAVWrzjubg" target="_blank" rel="noreferrer noopener">Open Cauchy’s Integral Formula</a></p>
+
+<p><a href="https://youtu.be/1oxYu94ZgxM" target="_blank" rel="noreferrer noopener">Open Cauchy’s Integral Formula for Higher Derivatives</a></p>
+
+<p><a href="https://youtu.be/15oM0dVKEak" target="_blank" rel="noreferrer noopener">Open Zeros of Analytic Function</a></p>
+
+<p><a href="https://youtu.be/GkK6GF8weTo" target="_blank" rel="noreferrer noopener">Open Singularities</a></p>
+
+<p><a href="https://youtu.be/PfTClE19vNQ" target="_blank" rel="noreferrer noopener">Open Problems on Singularities</a></p>
+
+<p><a href="https://youtu.be/ZHvatIWmGlc" target="_blank" rel="noreferrer noopener">Open Important Definitions</a></p>
+
+<p><a href="https://youtu.be/1zZ9A2758pE" target="_blank" rel="noreferrer noopener">Open Residues</a></p>
+
+<p><a href="https://youtu.be/EUTU1DYROv4" target="_blank" rel="noreferrer noopener">Open Cauchy’s Residue Theorem</a></p>
+
+<p><h2>DIFFERENTIAL EQUATIONS</h2></p>
+<p><strong>Ordinary Differential Equation:</strong></p>
+
+<p><a href="https://youtu.be/svpAOHPhC6Q" target="_blank" rel="noreferrer noopener">Open Order &amp; Degree</a></p>
+
+<p><a href="https://youtu.be/Oeu4RnhyLj8" target="_blank" rel="noreferrer noopener">Open Formation of DE</a></p>
+<p><strong>Equation of I-Order & I-Degree:</strong></p>
+<p><a href="https://youtu.be/22u4Z5wC-J8" target="_blank" rel="noreferrer noopener">Open (i) Variable Separable Method</a></p>
+
+<p><a href="https://youtu.be/XiEAtJlTJqM" target="_blank" rel="noreferrer noopener">Open (ii) Homogeneous Method</a></p>
+
+<p><a href="https://youtu.be/QifD_zXpUrk" target="_blank" rel="noreferrer noopener">Open (iii) Linear Differential Equation</a></p>
+
+<p><a href="https://youtu.be/Sq3acXEr0L8" target="_blank" rel="noreferrer noopener">Open (iv) Bernoulli’s Equation</a></p>
+<p><strong>Linear DE with Constant Co-efficient:</strong></p>
+<p><a href="https://youtu.be/zFlmAKc57uU" target="_blank" rel="noreferrer noopener">Open (i) Type – I</a></p>
+
+<p><a href="https://youtu.be/Ofh7VPwPXUw" target="_blank" rel="noreferrer noopener">Open (ii) Type – II</a></p>
+
+<p><a href="https://youtu.be/E1Ys_xKpUQs" target="_blank" rel="noreferrer noopener">Open (iii) Type – III</a></p>
+
+<p><a href="https://youtu.be/imxtYXqwexI" target="_blank" rel="noreferrer noopener">Open (iv) Type – IV</a></p>
+
+<p><a href="https://youtu.be/0otE1eGNlqo" target="_blank" rel="noreferrer noopener">Open (v) Type – V</a></p>
+<p><strong>Homogeneous Equations:</strong></p>
+<p><a href="https://youtu.be/r_U2AKv1FEw" target="_blank" rel="noreferrer noopener">Open (i) Euler’s Type</a></p>
+
+<p><a href="https://youtu.be/mO0yEnC7I04" target="_blank" rel="noreferrer noopener">Open (ii) Legendre’s Type</a></p>
+
+<p><a href="https://youtu.be/gu19SDNCxsc" target="_blank" rel="noreferrer noopener">Open Simultaneous LDE</a></p>
+
+<p><a href="https://youtu.be/nOu0yIv6DzQ" target="_blank" rel="noreferrer noopener">Open Method of Variation of Parameter</a></p>
+
+<p><a href="https://youtu.be/WtJIAkTo2gw" target="_blank" rel="noreferrer noopener">Open Exact Differential Equation</a></p>
+<p><strong>Equation of I-Order & Higher Degree:</strong></p>
+<p><a href="https://youtu.be/eFqfERdRYA0" target="_blank" rel="noreferrer noopener">Open (i) Solvable for P</a></p>
+
+<p><a href="https://youtu.be/gn9f7Il2qTc" target="_blank" rel="noreferrer noopener">Open (ii) Solvable for y</a></p>
+
+<p><a href="https://youtu.be/kSkreCDLpUc" target="_blank" rel="noreferrer noopener">Open (iii) Solvable for x</a></p>
+
+<p><a href="https://youtu.be/2Rtwku0t5Z8" target="_blank" rel="noreferrer noopener">Open (iv) Clairaut’s Form</a></p>
+
+<p><a href="https://youtu.be/mPgoeHcFD48" target="_blank" rel="noreferrer noopener">Open (v) Extended Clairaut’s Form</a></p>
+
+<p><strong>Total Differential Equation:</strong></p>
+<p><a href="https://youtu.be/Vix8gXALxiA" target="_blank" rel="noreferrer noopener">Open (i) Grouping Method</a></p>
+
+<p><a href="https://youtu.be/URUc_2tihBw" target="_blank" rel="noreferrer noopener">Open (ii) Dividing Common term</a></p>
+
+<p><a href="https://youtu.be/5E3sNEMhW0o" target="_blank" rel="noreferrer noopener">Open (iii) General Method</a></p>
+<p><strong>Wronskian:</strong></p>
+<p><a href="https://youtu.be/z1GHxZf8Wyc" target="_blank" rel="noreferrer noopener">Open (i) L.I &amp; L.D</a></p>
+
+<p><a href="https://youtu.be/ByYyRZmDT0Q" target="_blank" rel="noreferrer noopener">Open (ii) Form DE</a></p>
+
+<p><a href="https://youtu.be/6oBP-1-7ReY" target="_blank" rel="noreferrer noopener">Open Types of Points</a></p>
+
+<p><a href="https://youtu.be/JfPqAVJ3C5Y" target="_blank" rel="noreferrer noopener">Open Frobenius Method</a></p>
+
+<p><a href="https://youtu.be/g8BOEUp701g" target="_blank" rel="noreferrer noopener">Open Legendre Polynomial</a></p>
+
+<p><a href="https://youtu.be/m9A9zI_E1Bo" target="_blank" rel="noreferrer noopener">Open Bessel’s Polynomial</a></p>
+
+<p><a href="https://youtu.be/lVNCVzIvIKI" target="_blank" rel="noreferrer noopener">Open Hermite Polynomial</a></p>
+<p><strong>Partial Differential Equation:</strong></p>
+<p><strong>Formation of PDE:</strong></p>
+<p><a href="https://youtu.be/XBK-DFNgjIo" target="_blank" rel="noreferrer noopener">Open (i) Elimination of Arbitrary Constants</a></p>
+
+<p><a href="https://youtu.be/TqDCps2Z5pk" target="_blank" rel="noreferrer noopener">Open (ii) Elimination of Arbitrary Functions</a></p>
+
+<p><a href="https://youtu.be/G4q1xI8hnLc" target="_blank" rel="noreferrer noopener">Open PDE in Ordinary Cases</a></p>
+<p><strong>I – Order Non-linear PDE:</strong></p>
+<p><a href="https://youtu.be/BhP0gCCqYzo" target="_blank" rel="noreferrer noopener">Open (i) Type – I</a></p>
+
+<p><a href="https://youtu.be/GpWrFxlDlCE" target="_blank" rel="noreferrer noopener">Open (ii) Type – II</a></p>
+
+<p><a href="https://youtu.be/t7Fipno8FzU" target="_blank" rel="noreferrer noopener">Open (iii) Type – III</a></p>
+
+<p><a href="https://youtu.be/IfC5HWEyzbw" target="_blank" rel="noreferrer noopener">Open (iv) Type – IV</a></p>
+<p><strong>Lagrange’s Linear Equation:</strong></p>
+<p><a href="https://youtu.be/KK233zfvj8M" target="_blank" rel="noreferrer noopener">Open (i) Grouping Method</a></p>
+
+<p><a href="https://youtu.be/-z3CW37uahw" target="_blank" rel="noreferrer noopener">Open (ii) Multiplier Method</a></p>
+<p><strong>Second & Higher Order PDE:</strong></p>
+<p><a href="https://youtu.be/7a2mwDv5BS4" target="_blank" rel="noreferrer noopener">Open (i) Homogeneous Type</a></p>
+
+<p><a href="https://youtu.be/yBZBV93es2Y" target="_blank" rel="noreferrer noopener">Open (ii) Non-Homogeneous Type</a></p>
+<p><a href="https://youtu.be/NHTdJt-Ccxs" target="_blank" rel="noreferrer noopener">Open Classification of Second order PDE</a></p>
+
+<p><a href="https://youtu.be/_VFFSosVRPw" target="_blank" rel="noreferrer noopener">Open Charpit’s Method</a></p>
+
+<p><h2>OPERATION RESEARCH</h2></p>
+<p><a href="https://youtu.be/wNcSds3V25o" target="_blank" rel="noreferrer noopener">Open Linear Programming Problem</a></p>
+
+<p><a href="https://youtu.be/Y_KXN-m74Ys" target="_blank" rel="noreferrer noopener">Open Graphical Method</a></p>
+
+<p><a href="https://youtu.be/xg5QRW00yVo" target="_blank" rel="noreferrer noopener">Open Simplex Method</a></p>
+
+<p><a href="https://youtu.be/062bGZ2WTUU" target="_blank" rel="noreferrer noopener">Open Artificial Variable Technique</a></p>
+
+<p><a href="https://youtu.be/cn6pWgzM9Pc" target="_blank" rel="noreferrer noopener">Open Duality</a></p>
+
+<p><a href="https://youtu.be/g9Gd9iDTUtQ" target="_blank" rel="noreferrer noopener">Open Primal – Dual Problems</a></p>
+
+<p><a href="https://youtu.be/hZUEbOc0A6Y" target="_blank" rel="noreferrer noopener">Open Integer Programming</a></p>
+
+<p><a href="https://youtu.be/HdyuBHHIzXA" target="_blank" rel="noreferrer noopener">Open Non-Linear Programming Problem</a></p>
+
+<p><a href="https://youtu.be/fEGYtrPIEEo" target="_blank" rel="noreferrer noopener">Open Queueing Theory</a></p>
+
+<p><a href="https://youtu.be/BhjoclG57p8" target="_blank" rel="noreferrer noopener">Open Queueing Models</a></p>
+
+<p><a href="https://youtu.be/PyYIgYy-JHI" target="_blank" rel="noreferrer noopener">Open Problems on Queueing Models</a></p>
+
+<p><a href="https://youtu.be/cfQIvGk-Hec" target="_blank" rel="noreferrer noopener">Open Inventory Control</a></p>
+
+<p><a href="https://youtu.be/wfl5_YQp4jg" target="_blank" rel="noreferrer noopener">Open Network Analysis</a></p>
+
+<p><a href="https://youtu.be/m3Izez2Ble8" target="_blank" rel="noreferrer noopener">Open Full Chapter Revision</a></p>
+<p><h2>STATISTICS</h2></p>
+<p><a href="https://youtu.be/xAB5wbelVZ8" target="_blank" rel="noreferrer noopener">Open Arithmetic Mean</a></p>
+
+<p><a href="https://youtu.be/MJ2Afe6XTTU" target="_blank" rel="noreferrer noopener">Open Median</a></p>
+
+<p><a href="https://youtu.be/NWA_3TpPMZw" target="_blank" rel="noreferrer noopener">Open Mode</a></p>
+
+<p><a href="https://youtu.be/mHZqyKccYjU" target="_blank" rel="noreferrer noopener">Open Geometric &amp; Harmonic Mean</a></p>
+<p><strong>Measures of Dispersion:</strong></p>
+
+
+<p><a href="https://youtu.be/W7SEnqsekaE" target="_blank" rel="noreferrer noopener">Open Range, Q.D, M.D, S.D</a></p>
+
+<p><a href="https://youtu.be/3jzAue0xS5k" target="_blank" rel="noreferrer noopener">Open Moments &amp; Cumulants</a></p>
+
+<p><a href="https://youtu.be/7ZsJ5uIPazw" target="_blank" rel="noreferrer noopener">Open Skewness &amp; Kurtosis</a></p>
+
+<p><a href="https://youtu.be/C2rhUAH9HR8" target="_blank" rel="noreferrer noopener">Open Correlation &amp; Rank Correlation</a></p>
+
+<p><a href="https://youtu.be/fKjjMXeEUvg" target="_blank" rel="noreferrer noopener">Open Partial &amp; Multiple Correlation</a></p>
+
+<p><a href="https://youtu.be/IlBsDYoZDb4" target="_blank" rel="noreferrer noopener">Open Regression</a></p>
+
+<p><h2>PROBABILITY THEORY</h2></p>
+<p><a href="https://youtu.be/dmyPRMBN1pE" target="_blank" rel="noreferrer noopener">Open Probability</a></p>
+
+<p><a href="https://youtu.be/RUohU46AAuw" target="_blank" rel="noreferrer noopener">Open Problems on Probability</a></p>
+
+<p><a href="https://youtu.be/whVuJW9yRu8" target="_blank" rel="noreferrer noopener">Open Probability Function</a></p>
+
+<p><a href="https://youtu.be/EphxN8OJzdo" target="_blank" rel="noreferrer noopener">Open Problems on Probability Function</a></p>
+
+<p><a href="https://youtu.be/gKGjA4jONyQ" target="_blank" rel="noreferrer noopener">Open Joint Probability Function &amp; Problems</a></p>
+
+<p><a href="https://youtu.be/CzFBrD_Y4OU" target="_blank" rel="noreferrer noopener">Open Chebychev’s Inequality</a></p>
+
+<p><a href="https://youtu.be/Ta00kv5rUEM" target="_blank" rel="noreferrer noopener">Open Problems on Chebychev’s Inequality</a></p>
+
+<p><strong>Discrete Distributions:</strong></p>
+<p><a href="https://youtu.be/pBg0HKAKPsg" target="_blank" rel="noreferrer noopener">Open Binomial Distribution</a></p>
+
+<p><a href="https://youtu.be/8mUCvXKP1Io" target="_blank" rel="noreferrer noopener">Open Problems on Binomial Distribution</a></p>
+
+<p><a href="https://youtu.be/1odDzq9xsUw" target="_blank" rel="noreferrer noopener">Open Poisson Distribution</a></p>
+
+<p><a href="https://youtu.be/tJtlaoJtGR8" target="_blank" rel="noreferrer noopener">Open Problems on Poisson Distribution</a></p>
+<p><strong>Continuous Distribution:</strong></p>
+<p><a href="https://youtu.be/DI6BHGq2fKg" target="_blank" rel="noreferrer noopener">Open Uniform Distribution</a></p>
+
+<p><a href="https://youtu.be/5LXdh6D5toY" target="_blank" rel="noreferrer noopener">Open Problems on Uniform Distribution</a></p>
+
+<p><a href="https://youtu.be/xiETLEdO2DY" target="_blank" rel="noreferrer noopener">Open Exponential Distribution</a></p>
+
+<p><a href="https://youtu.be/1uGIl1JovxY" target="_blank" rel="noreferrer noopener">Open Normal Distribution</a></p>
+
+<p><a href="https://youtu.be/u2FXfTz6b6g" target="_blank" rel="noreferrer noopener">Open Problems on Normal Distribution</a></p>
+
+<p><a href="https://youtu.be/ryLyQ9nr084" target="_blank" rel="noreferrer noopener">Open Gamma Distribution</a></p>
+
+<p><a href="https://youtu.be/KxVX3gOK0Pk" target="_blank" rel="noreferrer noopener">Open Beta Distribution</a></p>
+
+<p><a href="https://youtu.be/0gTWTQu8lmA" target="_blank" rel="noreferrer noopener">Open Cauchy Distribution</a></p>
+
+<p><a href="https://youtu.be/5YiT071Rt6o" target="_blank" rel="noreferrer noopener">Open Cauchy Distribution</a></p>
+
+<p><a href="https://youtu.be/EfwSG8NJYi8" target="_blank" rel="noreferrer noopener">Open Student – t – Distribution</a></p>
+
+<p><a href="https://youtu.be/EzDNxSbfB8U" target="_blank" rel="noreferrer noopener">Open F – Distribution</a></p>
+
+<p><a href="https://youtu.be/Q6KpBtlqMMc" target="_blank" rel="noreferrer noopener">Open Samplings</a></p>
+
+<p><a href="https://youtu.be/DIe52GyySQY" target="_blank" rel="noreferrer noopener">Open Small Samples</a></p>
+
+<p><a href="https://youtu.be/PU5dBtBUAaw" target="_blank" rel="noreferrer noopener">Open Large Samples</a></p>
+
+<p><a href="https://youtu.be/mqTqhZBNsPI" target="_blank" rel="noreferrer noopener">Open ANOVA</a></p>
+
+<p><h2>DISTRIBUTIONS PROBLEMS:</h2></p>
+<p><a href="https://youtu.be/u0j9m5HaUcA" target="_blank" rel="noreferrer noopener">Open Problems on Binomial Distribution</a></p>
+
+<p><a href="https://youtu.be/pCHoZw-HCUk" target="_blank" rel="noreferrer noopener">Open Problems on Binomial Distribution</a></p>
+
+<p><a href="https://youtu.be/bhqalgEp6NM" target="_blank" rel="noreferrer noopener">Open Problems on Poisson Distribution</a></p>
+
+<p><a href="https://youtu.be/FvWZbhX8Bdw" target="_blank" rel="noreferrer noopener">Open Problems on Poisson Distribution</a></p>
+
+<p><a href="https://youtu.be/GUi-oN_pUUE" target="_blank" rel="noreferrer noopener">Open Problems on Uniform Distribution</a></p>
+
+<p><a href="https://youtu.be/ZhNnh4FMNmY" target="_blank" rel="noreferrer noopener">Open Problems on Exponential Distribution</a></p>
+
+<p><a href="https://youtu.be/q0Pgdd7ZNR4" target="_blank" rel="noreferrer noopener">Open Problems on Normal Distribution</a></p>
+
+<p><a href="https://youtu.be/aU232AyiI1w" target="_blank" rel="noreferrer noopener">Open Problems on Samplings</a></p>
+
+<p><a href="https://youtu.be/U11xkuwoSpM" target="_blank" rel="noreferrer noopener">Open Problems on Chi-square Test</a></p>
+
+<p><a href="https://youtu.be/v4N8hOsjSV4" target="_blank" rel="noreferrer noopener">Open Problems on t – test</a></p>
+
+</div>
+
 
     
         <footer data-elementor-type="footer" data-elementor-id="22" class="elementor elementor-22 elementor-location-footer" data-elementor-post-type="elementor_library">
@@ -1533,6 +2219,7 @@ if(e.target===overlay){closeVideo();}
 
 <!-- CSS for the Popup -->
 <style>
+
   .custom-popup-overlay {
     display: none; 
     position: fixed;
