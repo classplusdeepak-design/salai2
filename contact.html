@@ -1599,6 +1599,7 @@
 
 <!-- CSS for the Popup -->
 <style>
+
   .custom-popup-overlay {
     display: none; 
     position: fixed;
@@ -1716,6 +1717,75 @@
   .custom-submit-btn:active {
     transform: scale(0.98);
   }
+
+  .custom-submit-btn:disabled {
+    background: #888;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* ── Success / Error message styles ── */
+  .form-status-msg {
+    display: none;
+    text-align: center;
+    padding: 30px 0;
+  }
+
+  .form-status-msg .status-icon {
+    font-size: 52px;
+    margin-bottom: 10px;
+  }
+
+  .form-status-msg h3 {
+    font-size: 22px;
+    margin: 0 0 8px 0;
+    font-weight: 700;
+  }
+
+  .form-status-msg p {
+    font-size: 14px;
+    margin: 0 0 20px 0;
+    color: #666;
+  }
+
+  .form-status-msg.success .status-icon,
+  .form-status-msg.success h3 {
+    color: #16a34a;
+  }
+
+  .form-status-msg.error .status-icon,
+  .form-status-msg.error h3 {
+    color: #dc2626;
+  }
+
+  .status-action-btn {
+    padding: 10px 28px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .status-action-btn.success-btn {
+    background: transparent;
+    color: #16a34a;
+    border: 1.5px solid #16a34a;
+  }
+  .status-action-btn.success-btn:hover {
+    background: #16a34a;
+    color: #fff;
+  }
+
+  .status-action-btn.error-btn {
+    background: transparent;
+    color: #dc2626;
+    border: 1.5px solid #dc2626;
+  }
+  .status-action-btn.error-btn:hover {
+    background: #dc2626;
+    color: #fff;
+  }
 </style>
 
 <!-- HTML for the Popup -->
@@ -1723,69 +1793,152 @@
   <div class="custom-popup-box">
     <button class="custom-popup-close" onclick="closeCustomPopup()">&times;</button>
     
-    <h2>Enquire Now</h2>
-    <p>Fill this form and submit to know more about our courses. We will get back to you shortly.</p>
-    
-    <!-- Note: Change the action URL to Formspree or your custom PHP script to actually receive emails -->
-    <form id="customEnquireForm" action="YOUR_FORM_PROCESSING_URL" method="POST">
-      <div class="custom-form-group">
-        <input type="text" name="full_name" placeholder="Full Name" required>
-      </div>
-      <div class="custom-form-group">
-        <input type="email" name="email" placeholder="Email" required>
-      </div>
-      <div class="custom-form-group">
-        <input type="tel" name="phone" placeholder="Phone" required pattern="[0-9()#&amp;+*-=.]+" title="Only numbers and phone characters are accepted.">
-      </div>
-      <div class="custom-form-group">
-        <textarea name="message" rows="3" placeholder="Message"></textarea>
-      </div>
-      <button type="submit" class="custom-submit-btn">Submit</button>
-    </form>
+    <!-- ✅ Success Message -->
+    <div id="formSuccessMsg" class="form-status-msg success">
+      <div class="status-icon">✔</div>
+      <h3>Thank You!</h3>
+      <p>Your enquiry has been submitted successfully. We will get back to you shortly.</p>
+      <button class="status-action-btn success-btn" onclick="resetEnquiryForm()">Submit Another</button>
+    </div>
+
+    <!-- ❌ Error Message -->
+    <div id="formErrorMsg" class="form-status-msg error">
+      <div class="status-icon">✘</div>
+      <h3>Oops!</h3>
+      <p>Something went wrong. Please try again.</p>
+      <button class="status-action-btn error-btn" onclick="showFormAgain()">Try Again</button>
+    </div>
+
+    <!-- 📝 The Form -->
+    <div id="formWrapper">
+      <h2>Enquire Now</h2>
+      <p>Fill this form and submit to know more about our courses. We will get back to you shortly.</p>
+
+      <form id="customEnquireForm">
+        <div class="custom-form-group">
+          <input type="text" name="full_name" placeholder="Full Name" required>
+        </div>
+        <div class="custom-form-group">
+          <input type="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="custom-form-group">
+          <input type="tel" name="phone" placeholder="Phone" required pattern="[0-9()#&+*-=.]+" title="Only numbers and phone characters are accepted.">
+        </div>
+        <div class="custom-form-group">
+          <textarea name="message" rows="3" placeholder="Message"></textarea>
+        </div>
+        <button type="submit" class="custom-submit-btn" id="submitBtn">Submit</button>
+      </form>
+    </div>
+
   </div>
 </div>
 
 <!-- JavaScript for the Popup -->
 <script>
-  // Function to open the popup
+  // ============================================================
+  //  🔗 PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL BELOW
+  // ============================================================
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwY1i8y8zdO0rrqudAHRbI3RbAGOgg7FwenNQCegd-pzqPLU476-UF1aYJQDAblC4_2qQ/exec";
+
+  // ── Popup Open / Close ──
   function openCustomPopup() {
     document.getElementById("customEnquirePopup").classList.add("active");
-    document.body.style.overflow = "hidden"; // Prevent background scrolling
+    document.body.style.overflow = "hidden";
   }
 
-  // Function to close the popup
   function closeCustomPopup() {
     document.getElementById("customEnquirePopup").classList.remove("active");
-    document.body.style.overflow = "auto"; // Restore scrolling
+    document.body.style.overflow = "auto";
+    resetEnquiryForm(); // Reset everything when popup closes
   }
 
-  // Close popup if user clicks outside the box (on the dark overlay)
-  document.getElementById("customEnquirePopup").addEventListener("click", function(event) {
+  // Close if clicking the dark overlay
+  document.getElementById("customEnquirePopup").addEventListener("click", function (event) {
     if (event.target === this) {
       closeCustomPopup();
     }
   });
 
-  // Handle form submission
-  document.getElementById("customEnquireForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent default page reload
-    
-    // You can add AJAX here to send data to a server, or use a service like Formspree
-    
-    alert("Thank you! Your enquiry has been submitted.");
-    closeCustomPopup();
-    this.reset(); // Clear the form
+  // ── Form Status Helpers ──
+  const formWrapper   = document.getElementById("formWrapper");
+  const successMsg    = document.getElementById("formSuccessMsg");
+  const errorMsg      = document.getElementById("formErrorMsg");
+  const form          = document.getElementById("customEnquireForm");
+  const submitBtn     = document.getElementById("submitBtn");
+
+  function showSuccess() {
+    formWrapper.style.display = "none";
+    errorMsg.style.display    = "none";
+    successMsg.style.display  = "block";
+  }
+
+  function showError() {
+    formWrapper.style.display  = "none";
+    successMsg.style.display   = "none";
+    errorMsg.style.display     = "block";
+  }
+
+  function showFormAgain() {
+    formWrapper.style.display = "block";
+    errorMsg.style.display    = "none";
+    successMsg.style.display  = "none";
+  }
+
+  function resetEnquiryForm() {
+    form.reset();
+    formWrapper.style.display = "block";
+    successMsg.style.display  = "none";
+    errorMsg.style.display    = "none";
+    submitBtn.disabled        = false;
+    submitBtn.textContent     = "Submit";
+  }
+
+  // ── Handle Form Submission → Google Sheets ──
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    // Disable button & show loading state
+    submitBtn.disabled    = true;
+    submitBtn.textContent = "Submitting...";
+
+    // Collect form data
+    const formData = {
+      full_name: form.full_name.value.trim(),
+      email:     form.email.value.trim(),
+      phone:     form.phone.value.trim(),
+      message:   form.message.value.trim()
+    };
+
+    // Send data to Google Sheets
+    fetch(GOOGLE_SCRIPT_URL, {
+      method:  "POST",
+      mode:    "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body:    JSON.stringify(formData)
+    })
+    .then(() => {
+      // no-cors mode can't read the response, but no error = success
+      showSuccess();
+    })
+    .catch((error) => {
+      console.error("Submission error:", error);
+      showError();
+    })
+    .finally(() => {
+      submitBtn.disabled    = false;
+      submitBtn.textContent = "Submit";
+    });
   });
 
   // ==========================================
   // AUTOMATIC POPUP TRIGGER (20 Seconds)
   // ==========================================
-  // It only pops up once per browser session so it doesn't annoy users on refresh
   if (!sessionStorage.getItem('enquiryPopupAutoShown')) {
-    setTimeout(function() {
+    setTimeout(function () {
       openCustomPopup();
-      sessionStorage.setItem('enquiryPopupAutoShown', 'true'); 
-    }, 20000); // 20000 = 20 seconds
+      sessionStorage.setItem('enquiryPopupAutoShown', 'true');
+    }, 20000);
   }
 </script>
 <script>
